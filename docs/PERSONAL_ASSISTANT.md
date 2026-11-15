@@ -37,7 +37,7 @@ The pairing code is held only in page memory. Reloading or disconnecting clears 
 - Before connection, chat inputs and question shortcuts are disabled. There is no silent shared-account or canned-response fallback.
 - Provider credentials remain in the visitor's normal CLI authentication store. They are never copied into this repository or the website.
 - The connector accepts only the paired bearer code and explicit allowed origins. It logs neither chat contents nor authentication output.
-- Agents run in a temporary directory. Codex uses a read-only sandbox; Claude Code disables tools and external MCP configurations; OpenCode uses a dedicated no-tools agent. ORBITA does not enable bypass-permission flags.
+- Agents run in a temporary directory. Codex disables shell/execution/code-mode tools and uses a read-only sandbox; Claude Code disables tools and external MCP configurations; OpenCode uses a dedicated no-tools agent. ORBITA does not enable bypass-permission flags.
 - The assistant explains research forecasts and data provenance. It must not present clinical validation or invent causal treatment/meal predictions.
 - No account access or billable agent request is performed by the automated tests; they use fake local agents.
 

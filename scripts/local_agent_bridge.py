@@ -102,7 +102,7 @@ class LocalAgent:
         with tempfile.TemporaryDirectory(prefix='orbita-chat-') as folder:
             command=executable(self.provider)
             if self.provider=='codex':
-                args=['exec','--ignore-user-config','--ignore-rules','--ephemeral','--sandbox','read-only','--skip-git-repo-check','-c','approval_policy="never"','-c','web_search="disabled"','--json']
+                args=['exec','--ignore-user-config','--ignore-rules','--ephemeral','--sandbox','read-only','--skip-git-repo-check','--disable','shell_tool','--disable','unified_exec','--disable','code_mode_host','-c','approval_policy="never"','-c','web_search="disabled"','--json']
                 if self.model:args+=['--model',self.model]
                 args+=['-'];stdin=prompt
             elif self.provider=='claude':

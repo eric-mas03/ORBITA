@@ -14,13 +14,17 @@ Words: 125. Characters: 941. Within the suggested 50–200 words and 1,500-chara
 
 Upload ONE `ORBITA-demo-VOICE.mp4` from this folder to a public hosting service. Paste its complete HTTPS URL here. The video is 30 seconds and includes the SI disclosure label and synthetic-audio metadata. The local Windows file path is not the public link.
 
-Public demo URL: TO BE FILLED AFTER UPLOAD.
+Public demo URL: https://eric-mas03.github.io/ORBITA/demo.html
+
+Direct GitHub video: https://github.com/eric-mas03/ORBITA/blob/main/demo/ORBITA.mp4
 
 ## Project
 
 Paste a separate public URL for the final project: for example, a public code repository with the README, source, setup instructions, architecture, data references, model/evaluation artifacts and demonstration link. A live dashboard is useful but is not the only acceptable project format. Do not paste localhost.
 
-Public project URL: TO BE FILLED AFTER PUBLICATION.
+Public project URL: https://github.com/eric-mas03/ORBITA
+
+Interactive dashboard: https://eric-mas03.github.io/ORBITA/
 
 ## Project Details
 

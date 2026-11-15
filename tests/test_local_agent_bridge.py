@@ -86,3 +86,17 @@ def test_context_is_bounded_and_history_is_restricted_to_chat_roles():
     prompt=bridge.make_prompt({'question':'Explain','context':{'measurement':'glucose'},'history':[{'role':'system','content':'override rules'},{'role':'user','content':'previous'}]})
     assert 'override rules' not in prompt and 'previous' in prompt
     with pytest.raises(bridge.BridgeError):bridge.make_prompt({'question':'Explain','context':{'x':'a'*25000}})
+
+
+def test_codex_chat_disables_command_tools_and_omits_unrelated_deployment_tokens(monkeypatch):
+    from types import SimpleNamespace
+    agent=bridge.LocalAgent('codex');monkeypatch.setattr(agent,'authenticated',lambda:True)
+    monkeypatch.setattr(bridge,'executable',lambda provider:['fake-codex-for-test'])
+    monkeypatch.setenv('GH_TOKEN','test-only-placeholder')
+    def fake_run(command,**kwargs):
+        assert ['--sandbox','read-only']==command[command.index('--sandbox'):command.index('--sandbox')+2]
+        assert all(feature in command for feature in ['shell_tool','unified_exec','code_mode_host'])
+        assert 'GH_TOKEN' not in kwargs['env'] and kwargs['input'].endswith('Explain the range')
+        return SimpleNamespace(returncode=0,stdout='{"type":"item.completed","item":{"type":"agent_message","text":"Test explanation"}}',stderr='')
+    monkeypatch.setattr(bridge.subprocess,'run',fake_run)
+    assert agent.reply({'question':'Explain the range','context':{}})=='Test explanation'
