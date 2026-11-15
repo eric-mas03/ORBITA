@@ -6,7 +6,13 @@ A research prototype for future crew health support, developed by **ViMas Tech**
 
 **[Explore the dashboard](https://eric-mas03.github.io/ORBITA/)** · **[Watch the 30-second film](https://eric-mas03.github.io/ORBITA/demo.html)** · **[Open / download the video on GitHub](demo/ORBITA.mp4)**
 
-![ORBITA forecast interface](assets/dashboard-preview.png)
+**[▶ Play the 30-second video](https://eric-mas03.github.io/ORBITA/demo.html)** — click the preview below.
+
+[![Play ORBITA's 30-second demonstration](assets/dashboard-preview.png)](https://eric-mas03.github.io/ORBITA/demo.html)
+
+[Play the MP4 directly](https://eric-mas03.github.io/ORBITA/demo/ORBITA.mp4) · [Original repository file](demo/ORBITA.mp4)
+
+GitHub's repository file view may offer a download instead of a video player. The links above open the playable GitHub Pages version; the original `demo/ORBITA.mp4` path is preserved.
 
 ORBITA compares earlier forecasts with real observations, then shows what may happen next — with uncertainty. It combines a shared temporal forecasting model, an approachable dashboard and a research assistant that connects to **the visitor's own** Codex, Claude Code or OpenCode account.
 

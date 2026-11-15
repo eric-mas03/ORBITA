@@ -31,6 +31,8 @@ def main():
     (ROOT/'demo').mkdir(exist_ok=True)
     for voice in ['ava','andrew','ryan','guy']:shutil.copyfile(ROOT/f'presentation/submission/ORBITA-demo-{voice}.mp4',ROOT/f'demo/ORBITA-{voice}.mp4')
     shutil.copyfile(ROOT/'demo/ORBITA-ava.mp4',ROOT/'demo/ORBITA.mp4')
+    (docs/'demo').mkdir(exist_ok=True)
+    shutil.copyfile(ROOT/'demo/ORBITA.mp4',docs/'demo/ORBITA.mp4')
     payload=presentation_payload()
     (docs/'data/presentation.json').write_text(json.dumps(payload,ensure_ascii=False,allow_nan=False,separators=(',',':')),encoding='utf8')
     (docs/'.nojekyll').write_text('',encoding='utf8')
