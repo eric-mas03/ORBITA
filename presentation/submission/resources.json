@@ -1,0 +1,158 @@
+[
+  {
+    "field": "NASA Data",
+    "link_text": "NASA OSD-575 \u2014 Inspiration4 metabolic and biomarker research",
+    "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-575",
+    "use": "Earlier exploratory astronaut biomarker model; sparse pre-/post-flight visits."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA OSD-569 \u2014 Inspiration4 complete blood count",
+    "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-569",
+    "use": "Earlier exploratory astronaut biomarker model; sparse visits."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA LSDA \u2014 Bed Rest Standard Measures: Cardiovascular Function",
+    "url": "https://nlsp.nasa.gov/search/data/details/9af6f9ba-3730-54ab-a82a-1a32798667ae?dataType=EXPERIMENTS",
+    "use": "Experiment context for current ground-analogue cardiovascular heads."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA LSDA \u2014 UTMB C1 echocardiography",
+    "url": "https://nlsp.nasa.gov/search/data/details/95186651-28d7-5c72-8f32-d40838766078?dataType=DATASETS",
+    "use": "Current visit-based cardiac/vascular research heads."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA LSDA \u2014 UTMB C3 echocardiography",
+    "url": "https://nlsp.nasa.gov/search/data/details/c3bdfa7e-6661-5891-9ba0-0fc7c7a080d6?dataType=DATASETS",
+    "use": "Current visit-based cardiac head."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA LSDA \u2014 CFT70 cardiovascular measurements",
+    "url": "https://nlsp.nasa.gov/search/data/details/59501092-7252-5848-b79c-650e954b51ed?dataType=DATASETS",
+    "use": "Current 2D/3D cardiac heads; overlapping people are not counted twice."
+  },
+  {
+    "field": "NASA Data",
+    "link_text": "NASA OSDR RadLab \u2014 ISS DosTel1 environmental radiation",
+    "url": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+    "use": "Current environmental radiation forecast head; not personal dosimetry."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "BIG IDEAs glycemic wearable dataset v1.1.3",
+    "url": "https://physionet.org/content/big-ideas-glycemic-wearable/1.1.3/",
+    "use": "Earth-based glucose, heart-rate and meal research; current continuous demonstration."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "PhysioNet Challenge 2019 v1.0.0",
+    "url": "https://physionet.org/content/challenge-2019/1.0.0/",
+    "use": "Earlier terrestrial forecasting benchmarks, not the current astronaut or wearable data."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "CGMacros v1.0.0",
+    "url": "https://physionet.org/content/cgmacros/1.0.0/",
+    "use": "Audited during data research; excluded from the current forecasting campaign because of unresolved interpolation concerns."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Canadian Space Agency \u2014 monitoring radiation and astronaut health",
+    "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp",
+    "use": "Background on the mission-health monitoring problem; not a paired training dataset."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "OpenAI Codex",
+    "url": "https://openai.com/codex/",
+    "use": "AI/SI-assisted development, analysis, text and programmatic visual/video production."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "edge-tts",
+    "url": "https://github.com/rany2/edge-tts",
+    "use": "Access to Microsoft Edge neural speech for synthetic narration."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Python",
+    "url": "https://www.python.org/",
+    "use": "Implementation language."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "PyTorch",
+    "url": "https://pytorch.org/",
+    "use": "Neural forecasting models."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "NumPy",
+    "url": "https://numpy.org/",
+    "use": "Numerical processing."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "pandas",
+    "url": "https://pandas.pydata.org/",
+    "use": "Tabular processing."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "SciPy",
+    "url": "https://scipy.org/",
+    "use": "Scientific computations."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "scikit-learn",
+    "url": "https://scikit-learn.org/",
+    "use": "Earlier baseline and tree-model experiments."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Matplotlib",
+    "url": "https://matplotlib.org/",
+    "use": "Research evaluation figures."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Pillow",
+    "url": "https://python-pillow.org/",
+    "use": "Programmatic visual composition."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "FFmpeg",
+    "url": "https://ffmpeg.org/",
+    "use": "Video encoding, audio alignment and mixing."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "diagrams.net",
+    "url": "https://www.diagrams.net/",
+    "use": "Editable architecture diagram format."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Segoe UI typeface",
+    "url": "https://learn.microsoft.com/en-us/typography/font-list/segoe-ui",
+    "use": "System typeface rendered into the visual presentation; font binaries are not redistributed."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "Claude Code \u2014 optional visitor-owned chatbot agent",
+    "url": "https://code.claude.com/docs/en/cli-reference",
+    "use": "Optional personal-account local connector; no author credentials."
+  },
+  {
+    "field": "Other Data / Resources",
+    "link_text": "OpenCode \u2014 optional visitor-owned chatbot agent",
+    "url": "https://opencode.ai/docs/cli/commands",
+    "use": "Optional personal-account local connector; no author credentials."
+  }
+]

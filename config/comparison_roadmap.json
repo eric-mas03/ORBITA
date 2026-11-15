@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-14",
+  "scope": "comparison_plan_no_new_training",
+  "primary_architecture": {
+    "temporal_axis_preserved": true,
+    "input": "batch,N,variables_and_masks",
+    "per_grid_biomedical_encoders": true,
+    "fusion_is_per_grid_not_temporal_pooling": true,
+    "latent_sequence": "batch,N,d",
+    "transformer_memory": "batch,N,d",
+    "outputs": "batch,4_horizons,V_variables,3_quantiles",
+    "lookback_hours": 24,
+    "current_bin_minutes": 60,
+    "current_N": 24,
+    "desired_bin_minutes": 15,
+    "desired_N": 96,
+    "subhourly_gate": "actual sufficiently dense long records and valid terminal-bin labels; do not invent observations from hourly rows",
+    "current_d": 16,
+    "d_is_per_instant": true,
+    "current_readout": "shared temporal Transformer memory plus per-group Transformer cross-attention decoders",
+    "planned_alternative": "per-group Transformer heads reading the complete common latent sequence directly"
+  },
+  "fixed_contract": {
+    "horizons_hours": [1, 4, 8, 24],
+    "quantiles": [0.1, 0.5, 0.9],
+    "target": "published valid terminal interval ending at t+h",
+    "use_partial_inputs_and_labels": true,
+    "no_temporal_axis_collapse_before_attention": true,
+    "auxiliary_summaries_do_not_replace_latent_sequence": true,
+    "shared_splits_labels_units_and_origins_for_comparison": true,
+    "select_in_development": true,
+    "published_test_not_for_new_tuning": true
+  },
+  "phases": [
+    {"id": "A", "name": "parameterize_grid_window_and_shape_tests", "status": "planned", "shape_trace_current": "verified_2x24x16", "new_training": false},
+    {"id": "B", "name": "tabular_references", "already_run": ["persistence", "linear_quantile"], "planned": ["quantile_boosting", "quantile_regression_forest"], "first_feature_set": "same causal summaries as linear baseline"},
+    {"id": "C", "name": "full_sequence_variants", "reference": "T0_shared_temporal_memory", "planned": ["T3_residual_auxiliary_state_retaining_full_sequence", "T1_per_head_temporal_transformer", "T2_all_to_all_known_history_vs_causal"], "one_change_at_a_time": true, "bidir_safety": "truncate/filter all data after origin before encoding; decoder-only cutoff mask insufficient"},
+    {"id": "D", "name": "capacity_context_and_transfer", "planned": ["latent_16_32_64", "matched_origin_windows_6_12_24_hours", "group_time_tokens_if_justified", "external_pretraining_vs_scratch"], "avoid_cartesian_grid": true},
+    {"id": "E", "name": "ensemble_final_phase", "status": "planned_not_implemented", "base_models_frozen_first": true, "weight_training": "episode-grouped out-of-fold predictions within model-development data", "do_not_fit_weights_on": ["reserved_calibration", "final_test"], "initial_references": ["equal_nonnegative_weights", "learned_nonnegative_normalized_weights"], "weights_shared_across_quantiles_for_order": true, "averaged_quantiles_are_mixture_quantiles": false, "calibrate_combined_output_after_weights_frozen": true},
+    {"id": "F", "name": "dashboard_individual_and_ensemble_outputs", "status": "planned"}
+  ],
+  "report": "docs/plan-comparaciones-secuencia-y-ensemble.md"
+}

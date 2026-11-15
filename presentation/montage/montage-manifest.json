@@ -1,0 +1,56 @@
+{
+  "file": "orbita-30s-v7-clean.mp4",
+  "duration_seconds": 30,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "shots": [
+    {
+      "starts_at": 0,
+      "description": "Brand / orbital opening"
+    },
+    {
+      "starts_at": 1.8,
+      "description": "Product overview / fixed framing"
+    },
+    {
+      "starts_at": 5.05,
+      "description": "Observed versus predicted / curve reveal"
+    },
+    {
+      "starts_at": 8.1,
+      "description": "Forecast context / chatbot assistance"
+    },
+    {
+      "starts_at": 11.25,
+      "description": "Signals through source encoders"
+    },
+    {
+      "starts_at": 14.0,
+      "description": "Latent-space macro / rotating network"
+    },
+    {
+      "starts_at": 16.0,
+      "description": "Separate forecast outputs"
+    },
+    {
+      "starts_at": 18.1,
+      "description": "NASA provenance / staggered cards"
+    },
+    {
+      "starts_at": 24.0,
+      "description": "More frequent data / closing statement"
+    },
+    {
+      "starts_at": 28.25,
+      "description": "Still branded closing image"
+    }
+  ],
+  "style": "Offline editorial composition, fixed product framing, blur dissolves, curve reveals, kinetic text, 3D network illustration and staggered evidence cards. No website playback.",
+  "forecast_data": "forecast-snapshot.json",
+  "forecast_snapshot_sha256": "0246d6631e459f3fd3b4102c37ebd8ec8c0889ff91762614f80b23416a339354",
+  "narration": "voice-editions/ava-30s.wav",
+  "sound_design": "Original procedural low-volume transition swells",
+  "network_visualization": "Conceptual illustration, not actual patient embeddings",
+  "scientific_limits": "Independent studies, visit-based NASA cardiac data, environmental ISS instrument and Earth wearable demonstration remain distinguished."
+}

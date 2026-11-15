@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astronaut-twin"
+version = "0.1.0"
+description = "Exploratory longitudinal astronaut health data and grouped probabilistic forecasting"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "pandas>=2.2", "scipy>=1.13", "matplotlib>=3.9", "requests>=2.32", "torch>=2.6"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+research = ["scikit-learn>=1.4", "quantile-forest>=1.3"]
+presentation = ["Pillow>=10", "imageio-ffmpeg>=0.5", "opencv-python-headless>=4.10", "edge-tts>=7.2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests/test_model.py", "tests/test_source_expansion.py", "tests/test_presentation_forecasts.py", "tests/test_local_agent_bridge.py"]

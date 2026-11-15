@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-14",
+  "stage": "first_gru_transformer_memory_comparison_completed",
+  "status_vocabulary": {
+    "agreed": "Direction explicitly requested by the user; feasibility is not implied.",
+    "proposed": "Candidate pending feasibility and evaluation; this is not a standing user-approval requirement."
+  },
+  "execution": {
+    "status": "proposed",
+    "implement_model_changes": true,
+    "run_training": true,
+    "training_scope": "baselines_plus_from_scratch_gru_and_causal_transformer_memories_with_shared_grouped_attention_readout",
+    "run_attention_sweep": false,
+    "implement_dashboard": false
+  },
+  "task": {
+    "status": "agreed",
+    "forecast_horizons_hours": [1, 4, 8, 24],
+    "quantiles": [0.1, 0.5, 0.9],
+    "use_valid_partial_labels": true,
+    "architecture_direction": "biomedical_category_encoders_common_temporal_latent_target_group_heads",
+    "no_future_realized_covariates": true,
+    "no_fabricated_hourly_space_labels": true
+  },
+  "context": {
+    "status": "proposed",
+    "reference_lookback_hours": 24,
+    "candidate_lookbacks_hours": [6, 12, 24, 48],
+    "initial_bin_width_hours": 1,
+    "reference_token_count": 24,
+    "subhourly_candidate": {
+      "status": "proposed",
+      "bin_width_minutes": 15,
+      "reference_token_count": 96,
+      "gate": "Real subhourly observations and meaningful target coverage; no upsampling hourly rows."
+    },
+    "minimum_valid_context": null,
+    "minimum_valid_context_decision": "Specify per modality after auditing available windows and quality; before model comparison.",
+    "selection": "Audit all candidate contexts, then compare only a small feasible shortlist."
+  },
+  "time_contract": {
+    "status": "proposed",
+    "unit": "hours",
+    "origin": "Completed bin right edge t; all input information available by t.",
+    "bin_closure": "left_open_right_closed",
+    "last_input_bin": "(t-delta,t]",
+    "event_time_constraint": "event_time <= origin",
+    "availability_constraint": "available_time <= origin",
+    "model_snapshot_constraint": "Model fit, preprocessing and checkpoint selection must exist by origin.",
+    "missing_availability_policy": "Declare dataset-specific assumptions; do not silently equate event time and availability."
+  },
+  "input_aggregation": {
+    "status": "proposed",
+    "dense_raw_observation_candidates": ["mean", "min", "max"],
+    "metadata_candidates": ["observed_mask", "observation_count", "age_since_last_available_measurement"],
+    "native_hourly_aggregate_policy": "Use published hourly value and its semantics; do not invent intrahour min/max.",
+    "future_bin_or_centered_rolling_inputs": false,
+    "learned_preprocessing": "Fit only within training partition."
+  },
+  "target_definition": {
+    "status": "agreed",
+    "user_choice": "value_in_interval_ending_at_t_plus_h_not_cumulative_future_average",
+    "published_value_policy": "Preserve source acquisition/statistic semantics; do not assume hourly row is a raw-data mean.",
+    "initial_candidate": "mean_of_real_valid_measurements_in_completed_bin_ending_at_origin_plus_horizon",
+    "target_interval": "(t+h-delta,t+h]",
+    "alternatives_requiring_separate_tasks": ["future_bin_min", "future_bin_max", "point_value_with_predefined_tolerance", "aggregate_over_full_interval_t_to_t_plus_h"],
+    "no_observations_policy": "Mask target as absent; never interpolate evaluation labels.",
+    "minimum_observation_coverage": null,
+    "coverage_rule_decision": "Define by variable and acquisition method after cadence/count audit and before comparison.",
+    "quantiles_describe": "Conditional distribution of chosen future target, not within-bin empirical percentiles."
+  },
+  "multirate_architecture": {
+    "status": "proposed",
+    "fast_view": "Completed hourly bins initially, category encoders and causal temporal memory.",
+    "slow_view": "Actual laboratory events with true times, availability, masks and ages; separate context if justified.",
+    "shared_latent": "Same latent width with modality/view metadata; no forced resampling into new measurements.",
+    "query_readout_candidate": "Target/horizon query cross-attends permitted fast and slow memories.",
+    "simple_reference": "Last available lab value plus explicit age and missingness.",
+    "subject_linkage_required": true
+  },
+  "loss": {
+    "status": "agreed",
+    "mask_axes": ["person_episode_origin", "horizon", "target", "head"],
+    "all_labels_missing": "Skip backward and optimizer step.",
+    "reduction_decision": {
+      "status": "proposed",
+      "implemented_candidates": ["equal_head", "per_target"],
+      "implemented_per_target_semantics": "Equal weight per observed scalar target at a sample and horizon.",
+      "not_implemented_candidate": "Mean within each target-horizon cell, then average active cells; optionally balance heads.",
+      "rare_cell_policy": "Set support requirements or weights using training/development before test.",
+      "no_code_change_in_this_stage": true
+    }
+  },
+  "architecture_comparison": {
+    "status": "proposed",
+    "strategy": "Sequential ablations; one architectural hypothesis at a time; no Cartesian grid.",
+    "stage_1_baselines": ["persistence", "regularized_quantile_regression", "optional_small_quantile_MLP"],
+    "stage_2_temporal": ["small_GRU_with_masks_and_ages", "current_causal_scaled_dot_product_MHA"],
+    "stage_3_fusion": {
+      "candidate": "group_token_attention_vs_concatenation_projection",
+      "gate": "Adequate coobserved groups and a defensible temporal candidate."
+    },
+    "stage_4_time": {
+      "candidates": ["relative_real_time_attention_bias", "local_time_window_vs_full_past_attention"],
+      "gate": "Sufficient effective sequence length or meaningful irregularity; assess 24 actual hourly tokens and later 96 only if real subhourly data."
+    },
+    "fixed_across_comparisons": ["subject_episode_splits", "targets_and_masks", "horizons", "preprocessing", "selection_criterion", "comparable_capacity_and_budget"],
+    "required_software_checks": ["no_future_leak", "padding_invariance", "horizon_set_independence"]
+  },
+  "transfer": {
+    "status": "proposed",
+    "static_external": "NHANES for masked reconstruction of compatible lab encoders; no temporal trajectories.",
+    "hourly_external": "Real hourly clinical sequences for temporal pretraining; evaluate within source domain separately.",
+    "space_adaptation": "Harmonized space labels and sufficient target cadence required for hourly flight evaluation.",
+    "comparison": "From-scratch vs external-pretrained on identical reserved target-domain subjects.",
+    "negative_transfer_is_possible": true,
+    "sparse_space_visits_are_hourly_ground_truth": false
+  },
+  "evaluation": {
+    "status": "agreed",
+    "metrics": ["q50_MAE", "pinball_per_quantile", "q10_q90_coverage", "q10_q90_width", "empirical_quantile_frequencies"],
+    "breakdowns": ["head", "target", "horizon", "dataset_domain", "person_when_supported"],
+    "denominators": ["observed_labels", "unique_origins", "people", "episodes"],
+    "plots_proposed": ["MAE_and_pinball_by_horizon_and_head", "target_horizon_error_coverage_count_heatmaps", "coverage_and_width_by_horizon", "quantile_frequency_calibration_points", "person_traces_with_identified_forecast_origins"],
+    "prediction_interval_nominal_coverage": 0.8,
+    "joint_trajectory_coverage_claim": false,
+    "missing_target_error_is_zero": false,
+    "partitions": "Specify person/episode/domain generalization and chronological model availability before running; separate development/calibration/test as support permits.",
+    "stored_prediction_fields": ["person_id", "episode_id", "dataset", "domain", "head", "target", "unit", "issued_at", "horizon_hours", "target_interval", "observed_value", "label_mask", "quality_flags", "q10", "q50", "q90", "model_version", "preprocessing_version"]
+  },
+  "dashboard": {
+    "status": "agreed",
+    "order": "final_stage_after_stored_predictions_metrics_and_verified_plots",
+    "implementation_now": false,
+    "truth_source": "Persisted out-of-sample predictions and quality metadata, not fabricated continuous labels."
+  },
+  "feasibility_gates": [
+    "Confirm native sampling cadence, time semantics and availability per source.",
+    "Count usable contexts and real labels at 1/4/8/24h by target, head, person, episode and domain.",
+    "Verify identity and episode linkage; separate subjects before fitting transformations.",
+    "Define input eligibility, target interval and variable-specific coverage rules.",
+    "Freeze evaluation and small architecture shortlist before training.",
+    "Do not claim hourly space performance without real hourly space target support."
+  ]
+}

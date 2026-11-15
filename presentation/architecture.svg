@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">ORBITA — from observations to an informed forecast</title>
+  <desc id="description">Separate observation streams enter source-specific encoders, a shared causal Transformer memory, horizon queries and source-specific quantile heads. Different studies are never presented as one astronaut.</desc>
+  <defs>
+    <linearGradient id="memoryFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3f1e9"/><stop offset="1" stop-color="#edf3f8"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L8 5 L0 9" fill="none" stroke="#709187" stroke-width="1.6"/></marker>
+    <style>
+      text{font-family:Segoe UI,Arial,sans-serif;fill:#203b36}.heading{font-size:46px;font-weight:700;letter-spacing:-1.4px}.sub{font-size:21px;fill:#637c74}.step{font-size:12px;font-weight:700;letter-spacing:2px;fill:#69877b}.node-title{font-size:22px;font-weight:650}.small{font-size:16px;fill:#627970}.micro{font-size:13px;fill:#6b817a}.flow{fill:none;stroke:#9db8ad;stroke-width:2.5;marker-end:url(#arrow)}.signal-flow{fill:none;stroke-width:4;stroke-dasharray:4 16;stroke-linecap:round;animation:travel 2.5s linear infinite}.pulse{animation:pulse 3s ease-in-out infinite}.latent-point{animation:breathe 3s ease-in-out infinite}.flow,.signal-flow,.latent-point,.pulse{transform-box:fill-box;transform-origin:center}@keyframes travel{to{stroke-dashoffset:-80}}@keyframes pulse{50%{opacity:.55}}@keyframes breathe{50%{opacity:.5;transform:scale(.88)}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+    </style>
+  </defs>
+  <rect width="1600" height="900" rx="0" fill="#f5f8f5"/>
+  <text x="64" y="69" class="step">ORBITA · RESEARCH ARCHITECTURE</text>
+  <text x="64" y="129" class="heading">From observations to an informed forecast.</text>
+  <text x="64" y="168" class="sub">A shared memory of change, with a separate forecast for each source.</text>
+
+  <g id="source-observations">
+    <text x="64" y="226" class="step">01 · OBSERVE</text>
+    <rect x="64" y="248" width="240" height="114" rx="18" fill="#fff" stroke="#d8e4dc"/>
+    <rect x="80" y="267" width="5" height="73" rx="2" fill="#70ab91"/>
+    <text x="101" y="289" class="node-title" style="font-size:20px">Heart measurements</text>
+    <text x="101" y="318" class="small">NASA ground analogs</text>
+    <text x="101" y="342" class="micro">Real visits · original cadence</text>
+    <rect x="64" y="390" width="240" height="114" rx="18" fill="#fff" stroke="#d8e4dc"/>
+    <rect x="80" y="409" width="5" height="73" rx="2" fill="#8aafd1"/>
+    <text x="101" y="431" class="node-title">Station radiation</text>
+    <text x="101" y="460" class="small">NASA RadLab · ISS</text>
+    <text x="101" y="484" class="micro">Instrument environment</text>
+    <rect x="64" y="532" width="240" height="114" rx="18" fill="#fff" stroke="#d8e4dc"/>
+    <rect x="80" y="551" width="5" height="73" rx="2" fill="#cf9aa1"/>
+    <text x="101" y="573" class="node-title">Glucose and pulse</text>
+    <text x="101" y="602" class="small">Earth wearable study</text>
+    <text x="101" y="626" class="micro">Known history + meal records</text>
+  </g>
+
+  <g id="source-encoders">
+    <text x="370" y="226" class="step">02 · FIND PATTERNS</text>
+    <rect x="370" y="268" width="184" height="74" rx="16" fill="#e9f2ec" stroke="#cddfd2"/>
+    <text x="462" y="299" text-anchor="middle" class="node-title">Heart encoder</text><text x="462" y="323" text-anchor="middle" class="micro">Values · presence · age</text>
+    <rect x="370" y="410" width="184" height="74" rx="16" fill="#e9eff7" stroke="#d0dcea"/>
+    <text x="462" y="441" text-anchor="middle" class="node-title" style="font-size:18px">Radiation encoder</text><text x="462" y="465" text-anchor="middle" class="micro">Values · presence · age</text>
+    <rect x="370" y="552" width="184" height="74" rx="16" fill="#f7ebed" stroke="#ead4d9"/>
+    <text x="462" y="583" text-anchor="middle" class="node-title" style="font-size:18px">Wearable encoders</text><text x="462" y="607" text-anchor="middle" class="micro">Physiology + known meals</text>
+  </g>
+
+  <g id="flow-to-encoders">
+    <path class="flow" d="M304 305 H359"/><path class="flow" d="M304 447 H359"/><path class="flow" d="M304 589 H359"/>
+    <path id="signal-heart" class="signal-flow" stroke="#70ab91" d="M310 305 H357"/><path id="signal-radiation" class="signal-flow" stroke="#8aafd1" d="M310 447 H357"/><path id="signal-wearable" class="signal-flow" stroke="#cf9aa1" d="M310 589 H357"/>
+  </g>
+  <g id="flow-to-memory">
+    <path class="flow" d="M554 305 C599 305 602 371 641 389"/><path class="flow" d="M554 447 H641"/><path class="flow" d="M554 589 C599 589 602 523 641 505"/>
+    <path class="signal-flow" stroke="#70ab91" d="M554 305 C599 305 602 371 641 389"/><path class="signal-flow" stroke="#8aafd1" d="M554 447 H641"/><path class="signal-flow" stroke="#cf9aa1" d="M554 589 C599 589 602 523 641 505"/>
+  </g>
+
+  <g id="shared-latent-space">
+    <text x="651" y="226" class="step">03 · SHARED MEMORY</text>
+    <rect x="651" y="248" width="292" height="398" rx="24" fill="url(#memoryFill)" stroke="#bfd5c8"/>
+    <text x="797" y="282" text-anchor="middle" class="node-title">Shared temporal</text>
+    <text x="797" y="310" text-anchor="middle" class="node-title">representation</text>
+    <text x="797" y="340" text-anchor="middle" class="small">A space for patterns</text>
+    <g id="latent-network" opacity=".7" stroke="#9cb9ac" stroke-width="1.2">
+      <path d="M718 399 L779 367 L864 406 L841 483 L765 517 L704 470 Z M718 399 L841 483 M779 367 L765 517 M864 406 L704 470 M718 399 L864 406 M765 517 L864 406" fill="none"/>
+    </g>
+    <g id="latent-tokens">
+      <circle class="latent-point" cx="718" cy="399" r="12" fill="#70ab91"/>
+      <circle class="latent-point" cx="779" cy="367" r="9" fill="#8aafd1" style="animation-delay:.4s"/>
+      <circle class="latent-point" cx="864" cy="406" r="13" fill="#cf9aa1" style="animation-delay:.8s"/>
+      <circle class="latent-point" cx="841" cy="483" r="10" fill="#70ab91" style="animation-delay:1.2s"/>
+      <circle class="latent-point" cx="765" cy="517" r="12" fill="#8aafd1" style="animation-delay:1.6s"/>
+      <circle class="latent-point" cx="704" cy="470" r="8" fill="#cf9aa1" style="animation-delay:2s"/>
+      <circle class="latent-point" cx="792" cy="442" r="17" fill="#4e8873"/>
+    </g>
+    <text x="797" y="572" text-anchor="middle" class="small">Learn changes over time</text>
+    <text x="797" y="599" text-anchor="middle" class="micro">Shared causal Transformer</text>
+    <text x="797" y="622" text-anchor="middle" class="micro">Source identity remains explicit</text>
+  </g>
+
+  <g id="horizon-queries">
+    <text x="1012" y="226" class="step">04 · LOOK AHEAD</text>
+    <rect x="1006" y="309" width="187" height="276" rx="19" fill="#fff" stroke="#d8e4dc"/>
+    <text x="1099" y="348" text-anchor="middle" class="node-title" style="font-size:20px">Choose a horizon</text>
+    <rect x="1026" y="370" width="67" height="39" rx="10" fill="#e7f1eb"/><rect x="1104" y="370" width="67" height="39" rx="10" fill="#e7f1eb"/>
+    <rect x="1026" y="421" width="67" height="39" rx="10" fill="#e7f1eb"/><rect x="1104" y="421" width="67" height="39" rx="10" fill="#e7f1eb"/>
+    <text x="1059" y="396" text-anchor="middle" class="small">1 h</text><text x="1137" y="396" text-anchor="middle" class="small">4 h</text><text x="1059" y="447" text-anchor="middle" class="small">8 h</text><text x="1137" y="447" text-anchor="middle" class="small">24 h</text>
+    <text x="1099" y="493" text-anchor="middle" class="micro">Continuous sources</text>
+    <path d="M1026 512 H1171" stroke="#e2e9e3"/>
+    <text x="1099" y="541" text-anchor="middle" class="small">Or the next visit</text>
+    <text x="1099" y="565" text-anchor="middle" class="micro">For sparse echo measurements</text>
+  </g>
+  <path class="flow" d="M943 447 H995"/>
+  <path id="flow-memory-to-query" class="signal-flow" stroke="#4e8873" d="M949 447 H995"/>
+
+  <g id="forecast-heads">
+    <text x="1252" y="226" class="step">05 · SHOW THE RANGE</text>
+    <rect x="1250" y="248" width="286" height="398" rx="24" fill="#fff" stroke="#d8e4dc"/>
+    <text x="1393" y="290" text-anchor="middle" class="node-title">A forecast per source</text>
+    <text x="1393" y="319" text-anchor="middle" class="small">With visible uncertainty</text>
+    <g id="quantile-output">
+      <path d="M1282 468 L1324 436 L1366 419 L1408 396 L1450 383 L1504 363 L1504 507 L1450 487 L1408 476 L1366 483 L1324 496 L1282 517 Z" fill="#b8ddc9" opacity=".6"/>
+      <path d="M1282 491 L1324 468 L1366 451 L1408 436 L1450 435 L1504 430" fill="none" stroke="#43856e" stroke-width="4" stroke-dasharray="9 7"/>
+      <circle class="pulse" cx="1504" cy="430" r="7" fill="#43856e"/>
+      <text x="1282" y="551" class="micro">Central estimate + forecast range</text>
+    </g>
+    <text x="1393" y="594" text-anchor="middle" class="micro">Source-specific residual heads</text>
+    <text x="1393" y="619" text-anchor="middle" class="micro">Blend selected on validation data</text>
+  </g>
+  <path class="flow" d="M1193 447 H1239"/>
+  <path id="flow-query-to-head" class="signal-flow" stroke="#4e8873" d="M1199 447 H1239"/>
+
+  <g id="data-integrity-note">
+    <text x="64" y="699" class="small">Different studies are never treated as one astronaut. Missing measurements stay masked.</text>
+  </g>
+  <g id="next-step-callout">
+    <rect x="64" y="743" width="1472" height="103" rx="20" fill="#e7eee8"/>
+    <text x="90" y="783" class="step">THE NEXT STEP</text>
+    <text x="90" y="818" font-size="27" font-weight="650">More people. More frequent measurements. Better evidence for prediction quality.</text>
+  </g>
+<text x="1560" y="887" text-anchor="end" style="font-family:Segoe UI,Arial,sans-serif;font-size:13px;fill:#486c5b">SI-assisted diagram · OpenAI Codex</text></svg>

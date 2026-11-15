@@ -1,0 +1,2219 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "status": "planning_and_feasibility_only_no_training",
+  "requested_horizons_hours": [
+    1,
+    4,
+    8,
+    24
+  ],
+  "quantiles": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "primary_hourly_domain": {
+    "dataset": "PhysioNet Challenge2019 1.0.0 downloaded1000_sequence_subset",
+    "source_url": "https://physionet.org/content/challenge-2019/1.0.0/",
+    "sequence_identity": "site_plus_published_file_id; unique_person_across_admissions_not_established",
+    "time_column": "ICULOS",
+    "time_unit": "hours_since_ICU_admission",
+    "source_row_resolution_hours": 1,
+    "label_resolution_policy": "User confirmed terminal bin; published hourly value associated with(t+h-1hour,t+h], not cumulative future mean or known instantaneous true state.",
+    "availability_assumption": "Retrospective baseline: row t is available at issuance t; real laboratory turnaround unknown. Sensitivity required for prospective claims."
+  },
+  "context_candidates": {
+    "max_hours": 24,
+    "full_history_hour_slots": "[t-23,t] inclusive;24slots,not24hcontinuoussensorcoverage",
+    "short_contexts_hours": [
+      1,
+      4,
+      8,
+      12
+    ],
+    "long_contexts_hours": [
+      24
+    ],
+    "allow_partial_history": true,
+    "left_pad_without_fabricating_observations": true,
+    "retain_short_sequences": true,
+    "full_and_partial_context_evaluated_separately": true,
+    "exclude_entire_sequence_for_missing_single_variable": false
+  },
+  "dense_sensor_aggregation_candidate": {
+    "bin_minutes": 15,
+    "requested_summaries": [
+      "mean",
+      "min",
+      "max"
+    ],
+    "required_metadata": [
+      "observed_count",
+      "valid_count",
+      "coverage_fraction_if_sampling_rate_known",
+      "last_observation_age",
+      "source_resolution",
+      "quality_flags"
+    ],
+    "causal_bins": "(t-15min,t], evaluated only after bin ends; no future samples",
+    "current_hourly_source_supports_15min_aggregation": false,
+    "do_not_repeat_hourly_value_into_four_fake_measurements": true,
+    "laboratories": "keep measured events,maskandage; do not fabricate15min mean/min/max when no event exists"
+  },
+  "masks": {
+    "input_observed": "finite_valid_actual_measurement, distinct from model filled input",
+    "input_available": "available_time<=issuance",
+    "target_observed": "finite_valid_real_cell_at_exact_target_hour",
+    "censored": "separate bound/direction; excluded from ordinary point pinball",
+    "padding": "no historic slot exists; differs from missing variable in existing slot",
+    "all_targets_missing": "keep record for other tasks; skip supervised optimizer step for empty batch"
+  },
+  "excluded_predictor_fields": [
+    "SepsisLabel",
+    "final_outcomes",
+    "future_rows"
+  ],
+  "non_target_fields": [
+    "Age",
+    "Gender",
+    "Unit1",
+    "Unit2",
+    "HospAdmTime",
+    "ICULOS",
+    "SepsisLabel"
+  ],
+  "groups": {
+    "cardiovascular_vitals": [
+      "HR",
+      "SBP",
+      "MAP",
+      "DBP"
+    ],
+    "respiratory_oxygenation": [
+      "O2Sat",
+      "Resp",
+      "EtCO2",
+      "FiO2",
+      "PaCO2",
+      "SaO2"
+    ],
+    "thermoregulation": [
+      "Temp"
+    ],
+    "acid_base": [
+      "BaseExcess",
+      "HCO3",
+      "pH"
+    ],
+    "hepatobiliary_enzymes": [
+      "AST",
+      "Alkalinephos",
+      "Bilirubin_direct",
+      "Bilirubin_total"
+    ],
+    "renal_energy_metabolism": [
+      "BUN",
+      "Creatinine",
+      "Glucose"
+    ],
+    "electrolytes_minerals": [
+      "Calcium",
+      "Chloride",
+      "Magnesium",
+      "Phosphate",
+      "Potassium"
+    ],
+    "metabolic_lactate": [
+      "Lactate"
+    ],
+    "cardiac_laboratory": [
+      "TroponinI"
+    ],
+    "cbc_erythrocytes": [
+      "Hct",
+      "Hgb"
+    ],
+    "hemostasis_adhesion": [
+      "PTT",
+      "Fibrinogen"
+    ],
+    "cbc_leukocytes": [
+      "WBC"
+    ],
+    "cbc_platelets": [
+      "Platelets"
+    ]
+  },
+  "input_groups": {
+    "cardiovascular_vitals": [
+      "SEPSIS2019::HR",
+      "SEPSIS2019::SBP",
+      "SEPSIS2019::MAP",
+      "SEPSIS2019::DBP"
+    ],
+    "respiratory_oxygenation": [
+      "SEPSIS2019::O2Sat",
+      "SEPSIS2019::Resp",
+      "SEPSIS2019::EtCO2",
+      "SEPSIS2019::FiO2",
+      "SEPSIS2019::PaCO2",
+      "SEPSIS2019::SaO2"
+    ],
+    "thermoregulation": [
+      "SEPSIS2019::Temp"
+    ],
+    "acid_base": [
+      "SEPSIS2019::BaseExcess",
+      "SEPSIS2019::HCO3",
+      "SEPSIS2019::pH"
+    ],
+    "hepatobiliary_enzymes": [
+      "SEPSIS2019::AST",
+      "SEPSIS2019::Alkalinephos",
+      "SEPSIS2019::Bilirubin_direct",
+      "SEPSIS2019::Bilirubin_total"
+    ],
+    "renal_energy_metabolism": [
+      "SEPSIS2019::BUN",
+      "SEPSIS2019::Creatinine",
+      "SEPSIS2019::Glucose"
+    ],
+    "electrolytes_minerals": [
+      "SEPSIS2019::Calcium",
+      "SEPSIS2019::Chloride",
+      "SEPSIS2019::Magnesium",
+      "SEPSIS2019::Phosphate",
+      "SEPSIS2019::Potassium"
+    ],
+    "metabolic_lactate": [
+      "SEPSIS2019::Lactate"
+    ],
+    "cardiac_laboratory": [
+      "SEPSIS2019::TroponinI"
+    ],
+    "cbc_erythrocytes": [
+      "SEPSIS2019::Hct",
+      "SEPSIS2019::Hgb"
+    ],
+    "hemostasis_adhesion": [
+      "SEPSIS2019::PTT",
+      "SEPSIS2019::Fibrinogen"
+    ],
+    "cbc_leukocytes": [
+      "SEPSIS2019::WBC"
+    ],
+    "cbc_platelets": [
+      "SEPSIS2019::Platelets"
+    ]
+  },
+  "output_groups": {
+    "cardiovascular_vitals": [
+      "SEPSIS2019::HR",
+      "SEPSIS2019::SBP",
+      "SEPSIS2019::MAP",
+      "SEPSIS2019::DBP"
+    ],
+    "respiratory_oxygenation": [
+      "SEPSIS2019::O2Sat",
+      "SEPSIS2019::Resp",
+      "SEPSIS2019::EtCO2",
+      "SEPSIS2019::FiO2",
+      "SEPSIS2019::PaCO2",
+      "SEPSIS2019::SaO2"
+    ],
+    "thermoregulation": [
+      "SEPSIS2019::Temp"
+    ],
+    "acid_base": [
+      "SEPSIS2019::BaseExcess",
+      "SEPSIS2019::HCO3",
+      "SEPSIS2019::pH"
+    ],
+    "hepatobiliary_enzymes": [
+      "SEPSIS2019::AST",
+      "SEPSIS2019::Alkalinephos",
+      "SEPSIS2019::Bilirubin_direct",
+      "SEPSIS2019::Bilirubin_total"
+    ],
+    "renal_energy_metabolism": [
+      "SEPSIS2019::BUN",
+      "SEPSIS2019::Creatinine",
+      "SEPSIS2019::Glucose"
+    ],
+    "electrolytes_minerals": [
+      "SEPSIS2019::Calcium",
+      "SEPSIS2019::Chloride",
+      "SEPSIS2019::Magnesium",
+      "SEPSIS2019::Phosphate",
+      "SEPSIS2019::Potassium"
+    ],
+    "metabolic_lactate": [
+      "SEPSIS2019::Lactate"
+    ],
+    "cardiac_laboratory": [
+      "SEPSIS2019::TroponinI"
+    ],
+    "cbc_erythrocytes": [
+      "SEPSIS2019::Hct",
+      "SEPSIS2019::Hgb"
+    ],
+    "hemostasis_adhesion": [
+      "SEPSIS2019::PTT",
+      "SEPSIS2019::Fibrinogen"
+    ],
+    "cbc_leukocytes": [
+      "SEPSIS2019::WBC"
+    ],
+    "cbc_platelets": [
+      "SEPSIS2019::Platelets"
+    ]
+  },
+  "variables": [
+    {
+      "source_key": "HR",
+      "variable_key": "SEPSIS2019::HR",
+      "group": "cardiovascular_vitals",
+      "source_unit_as_documented": "beats/min",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 34192,
+          "sequences_with_future_labels": 1000,
+          "pairs_partial_context": 33416,
+          "sequences_partial_context": 1000,
+          "pairs_full24_context": 14473,
+          "sequences_full24_context": 726
+        },
+        "4": {
+          "future_labels": 31378,
+          "sequences_with_future_labels": 1000,
+          "pairs_partial_context": 30603,
+          "sequences_partial_context": 1000,
+          "pairs_full24_context": 12487,
+          "sequences_full24_context": 676
+        },
+        "8": {
+          "future_labels": 27661,
+          "sequences_with_future_labels": 991,
+          "pairs_partial_context": 26895,
+          "sequences_partial_context": 988,
+          "pairs_full24_context": 10014,
+          "sequences_full24_context": 638
+        },
+        "24": {
+          "future_labels": 14473,
+          "sequences_with_future_labels": 726,
+          "pairs_partial_context": 13917,
+          "sequences_partial_context": 713,
+          "pairs_full24_context": 3075,
+          "sequences_full24_context": 237
+        }
+      }
+    },
+    {
+      "source_key": "O2Sat",
+      "variable_key": "SEPSIS2019::O2Sat",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "%",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 33019,
+          "sequences_with_future_labels": 1000,
+          "pairs_partial_context": 32263,
+          "sequences_partial_context": 1000,
+          "pairs_full24_context": 13944,
+          "sequences_full24_context": 723
+        },
+        "4": {
+          "future_labels": 30279,
+          "sequences_with_future_labels": 998,
+          "pairs_partial_context": 29523,
+          "sequences_partial_context": 997,
+          "pairs_full24_context": 12042,
+          "sequences_full24_context": 672
+        },
+        "8": {
+          "future_labels": 26675,
+          "sequences_with_future_labels": 988,
+          "pairs_partial_context": 25924,
+          "sequences_partial_context": 985,
+          "pairs_full24_context": 9683,
+          "sequences_full24_context": 635
+        },
+        "24": {
+          "future_labels": 13944,
+          "sequences_with_future_labels": 723,
+          "pairs_partial_context": 13411,
+          "sequences_partial_context": 710,
+          "pairs_full24_context": 3015,
+          "sequences_full24_context": 235
+        }
+      }
+    },
+    {
+      "source_key": "Temp",
+      "variable_key": "SEPSIS2019::Temp",
+      "group": "thermoregulation",
+      "source_unit_as_documented": "degC",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 12623,
+          "sequences_with_future_labels": 987,
+          "pairs_partial_context": 12383,
+          "sequences_partial_context": 986,
+          "pairs_full24_context": 4969,
+          "sequences_full24_context": 689
+        },
+        "4": {
+          "future_labels": 11568,
+          "sequences_with_future_labels": 984,
+          "pairs_partial_context": 11249,
+          "sequences_partial_context": 979,
+          "pairs_full24_context": 4268,
+          "sequences_full24_context": 640
+        },
+        "8": {
+          "future_labels": 10061,
+          "sequences_with_future_labels": 968,
+          "pairs_partial_context": 9750,
+          "sequences_partial_context": 960,
+          "pairs_full24_context": 3420,
+          "sequences_full24_context": 597
+        },
+        "24": {
+          "future_labels": 4969,
+          "sequences_with_future_labels": 689,
+          "pairs_partial_context": 4769,
+          "sequences_partial_context": 666,
+          "pairs_full24_context": 941,
+          "sequences_full24_context": 202
+        }
+      }
+    },
+    {
+      "source_key": "SBP",
+      "variable_key": "SEPSIS2019::SBP",
+      "group": "cardiovascular_vitals",
+      "source_unit_as_documented": "mmHg",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 32704,
+          "sequences_with_future_labels": 991,
+          "pairs_partial_context": 31953,
+          "sequences_partial_context": 991,
+          "pairs_full24_context": 13684,
+          "sequences_full24_context": 699
+        },
+        "4": {
+          "future_labels": 29999,
+          "sequences_with_future_labels": 991,
+          "pairs_partial_context": 29249,
+          "sequences_partial_context": 991,
+          "pairs_full24_context": 11803,
+          "sequences_full24_context": 655
+        },
+        "8": {
+          "future_labels": 26398,
+          "sequences_with_future_labels": 981,
+          "pairs_partial_context": 25654,
+          "sequences_partial_context": 979,
+          "pairs_full24_context": 9467,
+          "sequences_full24_context": 614
+        },
+        "24": {
+          "future_labels": 13684,
+          "sequences_with_future_labels": 699,
+          "pairs_partial_context": 13148,
+          "sequences_partial_context": 688,
+          "pairs_full24_context": 2975,
+          "sequences_full24_context": 227
+        }
+      }
+    },
+    {
+      "source_key": "MAP",
+      "variable_key": "SEPSIS2019::MAP",
+      "group": "cardiovascular_vitals",
+      "source_unit_as_documented": "mmHg",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 33304,
+          "sequences_with_future_labels": 997,
+          "pairs_partial_context": 32551,
+          "sequences_partial_context": 997,
+          "pairs_full24_context": 14053,
+          "sequences_full24_context": 723
+        },
+        "4": {
+          "future_labels": 30551,
+          "sequences_with_future_labels": 997,
+          "pairs_partial_context": 29808,
+          "sequences_partial_context": 997,
+          "pairs_full24_context": 12121,
+          "sequences_full24_context": 674
+        },
+        "8": {
+          "future_labels": 26934,
+          "sequences_with_future_labels": 986,
+          "pairs_partial_context": 26190,
+          "sequences_partial_context": 983,
+          "pairs_full24_context": 9730,
+          "sequences_full24_context": 635
+        },
+        "24": {
+          "future_labels": 14053,
+          "sequences_with_future_labels": 723,
+          "pairs_partial_context": 13511,
+          "sequences_partial_context": 711,
+          "pairs_full24_context": 3005,
+          "sequences_full24_context": 235
+        }
+      }
+    },
+    {
+      "source_key": "DBP",
+      "variable_key": "SEPSIS2019::DBP",
+      "group": "cardiovascular_vitals",
+      "source_unit_as_documented": "mmHg",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 26132,
+          "sequences_with_future_labels": 799,
+          "pairs_partial_context": 25556,
+          "sequences_partial_context": 799,
+          "pairs_full24_context": 11126,
+          "sequences_full24_context": 557
+        },
+        "4": {
+          "future_labels": 24062,
+          "sequences_with_future_labels": 798,
+          "pairs_partial_context": 23474,
+          "sequences_partial_context": 798,
+          "pairs_full24_context": 9637,
+          "sequences_full24_context": 522
+        },
+        "8": {
+          "future_labels": 21259,
+          "sequences_with_future_labels": 792,
+          "pairs_partial_context": 20670,
+          "sequences_partial_context": 790,
+          "pairs_full24_context": 7769,
+          "sequences_full24_context": 487
+        },
+        "24": {
+          "future_labels": 11126,
+          "sequences_with_future_labels": 557,
+          "pairs_partial_context": 10698,
+          "sequences_partial_context": 547,
+          "pairs_full24_context": 2582,
+          "sequences_full24_context": 177
+        }
+      }
+    },
+    {
+      "source_key": "Resp",
+      "variable_key": "SEPSIS2019::Resp",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "breaths/min",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 32195,
+          "sequences_with_future_labels": 999,
+          "pairs_partial_context": 31471,
+          "sequences_partial_context": 999,
+          "pairs_full24_context": 13662,
+          "sequences_full24_context": 720
+        },
+        "4": {
+          "future_labels": 29558,
+          "sequences_with_future_labels": 998,
+          "pairs_partial_context": 28837,
+          "sequences_partial_context": 997,
+          "pairs_full24_context": 11795,
+          "sequences_full24_context": 671
+        },
+        "8": {
+          "future_labels": 26048,
+          "sequences_with_future_labels": 984,
+          "pairs_partial_context": 25338,
+          "sequences_partial_context": 982,
+          "pairs_full24_context": 9458,
+          "sequences_full24_context": 633
+        },
+        "24": {
+          "future_labels": 13662,
+          "sequences_with_future_labels": 720,
+          "pairs_partial_context": 13138,
+          "sequences_partial_context": 707,
+          "pairs_full24_context": 2898,
+          "sequences_full24_context": 230
+        }
+      }
+    },
+    {
+      "source_key": "EtCO2",
+      "variable_key": "SEPSIS2019::EtCO2",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "mmHg",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1000,
+          "sequences_with_future_labels": 77,
+          "pairs_partial_context": 966,
+          "sequences_partial_context": 76,
+          "pairs_full24_context": 319,
+          "sequences_full24_context": 25
+        },
+        "4": {
+          "future_labels": 887,
+          "sequences_with_future_labels": 72,
+          "pairs_partial_context": 849,
+          "sequences_partial_context": 70,
+          "pairs_full24_context": 281,
+          "sequences_full24_context": 24
+        },
+        "8": {
+          "future_labels": 729,
+          "sequences_with_future_labels": 61,
+          "pairs_partial_context": 698,
+          "sequences_partial_context": 60,
+          "pairs_full24_context": 232,
+          "sequences_full24_context": 21
+        },
+        "24": {
+          "future_labels": 319,
+          "sequences_with_future_labels": 25,
+          "pairs_partial_context": 308,
+          "sequences_partial_context": 24,
+          "pairs_full24_context": 98,
+          "sequences_full24_context": 6
+        }
+      }
+    },
+    {
+      "source_key": "BaseExcess",
+      "variable_key": "SEPSIS2019::BaseExcess",
+      "group": "acid_base",
+      "source_unit_as_documented": "mmol/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2042,
+          "sequences_with_future_labels": 312,
+          "pairs_partial_context": 1977,
+          "sequences_partial_context": 308,
+          "pairs_full24_context": 643,
+          "sequences_full24_context": 145
+        },
+        "4": {
+          "future_labels": 1722,
+          "sequences_with_future_labels": 293,
+          "pairs_partial_context": 1684,
+          "sequences_partial_context": 290,
+          "pairs_full24_context": 547,
+          "sequences_full24_context": 133
+        },
+        "8": {
+          "future_labels": 1361,
+          "sequences_with_future_labels": 243,
+          "pairs_partial_context": 1337,
+          "sequences_partial_context": 240,
+          "pairs_full24_context": 445,
+          "sequences_full24_context": 118
+        },
+        "24": {
+          "future_labels": 643,
+          "sequences_with_future_labels": 145,
+          "pairs_partial_context": 624,
+          "sequences_partial_context": 143,
+          "pairs_full24_context": 170,
+          "sequences_full24_context": 32
+        }
+      }
+    },
+    {
+      "source_key": "HCO3",
+      "variable_key": "SEPSIS2019::HCO3",
+      "group": "acid_base",
+      "source_unit_as_documented": "mmol/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1568,
+          "sequences_with_future_labels": 489,
+          "pairs_partial_context": 1507,
+          "sequences_partial_context": 485,
+          "pairs_full24_context": 620,
+          "sequences_full24_context": 299
+        },
+        "4": {
+          "future_labels": 1383,
+          "sequences_with_future_labels": 475,
+          "pairs_partial_context": 1345,
+          "sequences_partial_context": 469,
+          "pairs_full24_context": 558,
+          "sequences_full24_context": 280
+        },
+        "8": {
+          "future_labels": 1194,
+          "sequences_with_future_labels": 442,
+          "pairs_partial_context": 1168,
+          "sequences_partial_context": 435,
+          "pairs_full24_context": 452,
+          "sequences_full24_context": 236
+        },
+        "24": {
+          "future_labels": 620,
+          "sequences_with_future_labels": 299,
+          "pairs_partial_context": 609,
+          "sequences_partial_context": 296,
+          "pairs_full24_context": 145,
+          "sequences_full24_context": 44
+        }
+      }
+    },
+    {
+      "source_key": "FiO2",
+      "variable_key": "SEPSIS2019::FiO2",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "% (source documentation)",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": true,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 3048,
+          "sequences_with_future_labels": 436,
+          "pairs_partial_context": 2950,
+          "sequences_partial_context": 423,
+          "pairs_full24_context": 1132,
+          "sequences_full24_context": 181
+        },
+        "4": {
+          "future_labels": 2632,
+          "sequences_with_future_labels": 391,
+          "pairs_partial_context": 2552,
+          "sequences_partial_context": 376,
+          "pairs_full24_context": 1004,
+          "sequences_full24_context": 162
+        },
+        "8": {
+          "future_labels": 2203,
+          "sequences_with_future_labels": 332,
+          "pairs_partial_context": 2134,
+          "sequences_partial_context": 323,
+          "pairs_full24_context": 846,
+          "sequences_full24_context": 142
+        },
+        "24": {
+          "future_labels": 1132,
+          "sequences_with_future_labels": 181,
+          "pairs_partial_context": 1099,
+          "sequences_partial_context": 178,
+          "pairs_full24_context": 386,
+          "sequences_full24_context": 58
+        }
+      },
+      "quality_review_note": "3155 nonmissing values:3154 <=1, one4000 in training_setB/p107096.psv ICULOS2. Source says percent but values suggest fraction. Preserve raw;4000 invalid under either representation, do not silently clip or divide all values."
+    },
+    {
+      "source_key": "pH",
+      "variable_key": "SEPSIS2019::pH",
+      "group": "acid_base",
+      "source_unit_as_documented": "dimensionless",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2572,
+          "sequences_with_future_labels": 465,
+          "pairs_partial_context": 2463,
+          "sequences_partial_context": 446,
+          "pairs_full24_context": 788,
+          "sequences_full24_context": 211
+        },
+        "4": {
+          "future_labels": 2157,
+          "sequences_with_future_labels": 416,
+          "pairs_partial_context": 2092,
+          "sequences_partial_context": 407,
+          "pairs_full24_context": 662,
+          "sequences_full24_context": 189
+        },
+        "8": {
+          "future_labels": 1718,
+          "sequences_with_future_labels": 374,
+          "pairs_partial_context": 1676,
+          "sequences_partial_context": 366,
+          "pairs_full24_context": 536,
+          "sequences_full24_context": 166
+        },
+        "24": {
+          "future_labels": 788,
+          "sequences_with_future_labels": 211,
+          "pairs_partial_context": 763,
+          "sequences_partial_context": 208,
+          "pairs_full24_context": 198,
+          "sequences_full24_context": 46
+        }
+      }
+    },
+    {
+      "source_key": "PaCO2",
+      "variable_key": "SEPSIS2019::PaCO2",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "mmHg",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2082,
+          "sequences_with_future_labels": 445,
+          "pairs_partial_context": 1983,
+          "sequences_partial_context": 429,
+          "pairs_full24_context": 637,
+          "sequences_full24_context": 187
+        },
+        "4": {
+          "future_labels": 1724,
+          "sequences_with_future_labels": 397,
+          "pairs_partial_context": 1666,
+          "sequences_partial_context": 385,
+          "pairs_full24_context": 540,
+          "sequences_full24_context": 171
+        },
+        "8": {
+          "future_labels": 1364,
+          "sequences_with_future_labels": 334,
+          "pairs_partial_context": 1326,
+          "sequences_partial_context": 327,
+          "pairs_full24_context": 437,
+          "sequences_full24_context": 148
+        },
+        "24": {
+          "future_labels": 637,
+          "sequences_with_future_labels": 187,
+          "pairs_partial_context": 615,
+          "sequences_partial_context": 185,
+          "pairs_full24_context": 169,
+          "sequences_full24_context": 41
+        }
+      }
+    },
+    {
+      "source_key": "SaO2",
+      "variable_key": "SEPSIS2019::SaO2",
+      "group": "respiratory_oxygenation",
+      "source_unit_as_documented": "%",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1318,
+          "sequences_with_future_labels": 317,
+          "pairs_partial_context": 1258,
+          "sequences_partial_context": 302,
+          "pairs_full24_context": 384,
+          "sequences_full24_context": 130
+        },
+        "4": {
+          "future_labels": 1094,
+          "sequences_with_future_labels": 285,
+          "pairs_partial_context": 1055,
+          "sequences_partial_context": 276,
+          "pairs_full24_context": 320,
+          "sequences_full24_context": 119
+        },
+        "8": {
+          "future_labels": 867,
+          "sequences_with_future_labels": 247,
+          "pairs_partial_context": 844,
+          "sequences_partial_context": 241,
+          "pairs_full24_context": 243,
+          "sequences_full24_context": 100
+        },
+        "24": {
+          "future_labels": 384,
+          "sequences_with_future_labels": 130,
+          "pairs_partial_context": 372,
+          "sequences_partial_context": 130,
+          "pairs_full24_context": 61,
+          "sequences_full24_context": 27
+        }
+      }
+    },
+    {
+      "source_key": "AST",
+      "variable_key": "SEPSIS2019::AST",
+      "group": "hepatobiliary_enzymes",
+      "source_unit_as_documented": "IU/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 627,
+          "sequences_with_future_labels": 369,
+          "pairs_partial_context": 579,
+          "sequences_partial_context": 342,
+          "pairs_full24_context": 181,
+          "sequences_full24_context": 119
+        },
+        "4": {
+          "future_labels": 512,
+          "sequences_with_future_labels": 302,
+          "pairs_partial_context": 486,
+          "sequences_partial_context": 286,
+          "pairs_full24_context": 154,
+          "sequences_full24_context": 104
+        },
+        "8": {
+          "future_labels": 423,
+          "sequences_with_future_labels": 251,
+          "pairs_partial_context": 403,
+          "sequences_partial_context": 241,
+          "pairs_full24_context": 118,
+          "sequences_full24_context": 82
+        },
+        "24": {
+          "future_labels": 181,
+          "sequences_with_future_labels": 119,
+          "pairs_partial_context": 172,
+          "sequences_partial_context": 114,
+          "pairs_full24_context": 42,
+          "sequences_full24_context": 26
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::AST",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "BUN",
+      "variable_key": "SEPSIS2019::BUN",
+      "group": "renal_energy_metabolism",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2575,
+          "sequences_with_future_labels": 941,
+          "pairs_partial_context": 2463,
+          "sequences_partial_context": 936,
+          "pairs_full24_context": 991,
+          "sequences_full24_context": 557
+        },
+        "4": {
+          "future_labels": 2276,
+          "sequences_with_future_labels": 916,
+          "pairs_partial_context": 2209,
+          "sequences_partial_context": 903,
+          "pairs_full24_context": 884,
+          "sequences_full24_context": 516
+        },
+        "8": {
+          "future_labels": 1972,
+          "sequences_with_future_labels": 851,
+          "pairs_partial_context": 1904,
+          "sequences_partial_context": 835,
+          "pairs_full24_context": 704,
+          "sequences_full24_context": 420
+        },
+        "24": {
+          "future_labels": 991,
+          "sequences_with_future_labels": 557,
+          "pairs_partial_context": 969,
+          "sequences_partial_context": 549,
+          "pairs_full24_context": 220,
+          "sequences_full24_context": 89
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::UREA NITROGEN (BUN)",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Alkalinephos",
+      "variable_key": "SEPSIS2019::Alkalinephos",
+      "group": "hepatobiliary_enzymes",
+      "source_unit_as_documented": "IU/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 617,
+          "sequences_with_future_labels": 359,
+          "pairs_partial_context": 570,
+          "sequences_partial_context": 332,
+          "pairs_full24_context": 180,
+          "sequences_full24_context": 119
+        },
+        "4": {
+          "future_labels": 505,
+          "sequences_with_future_labels": 294,
+          "pairs_partial_context": 480,
+          "sequences_partial_context": 279,
+          "pairs_full24_context": 153,
+          "sequences_full24_context": 104
+        },
+        "8": {
+          "future_labels": 417,
+          "sequences_with_future_labels": 245,
+          "pairs_partial_context": 398,
+          "sequences_partial_context": 235,
+          "pairs_full24_context": 117,
+          "sequences_full24_context": 82
+        },
+        "24": {
+          "future_labels": 180,
+          "sequences_with_future_labels": 119,
+          "pairs_partial_context": 171,
+          "sequences_partial_context": 114,
+          "pairs_full24_context": 41,
+          "sequences_full24_context": 26
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::ALKALINE PHOSPHATASE",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Calcium",
+      "variable_key": "SEPSIS2019::Calcium",
+      "group": "electrolytes_minerals",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2183,
+          "sequences_with_future_labels": 859,
+          "pairs_partial_context": 2060,
+          "sequences_partial_context": 851,
+          "pairs_full24_context": 823,
+          "sequences_full24_context": 504
+        },
+        "4": {
+          "future_labels": 1896,
+          "sequences_with_future_labels": 828,
+          "pairs_partial_context": 1814,
+          "sequences_partial_context": 811,
+          "pairs_full24_context": 727,
+          "sequences_full24_context": 464
+        },
+        "8": {
+          "future_labels": 1601,
+          "sequences_with_future_labels": 759,
+          "pairs_partial_context": 1529,
+          "sequences_partial_context": 743,
+          "pairs_full24_context": 573,
+          "sequences_full24_context": 374
+        },
+        "24": {
+          "future_labels": 823,
+          "sequences_with_future_labels": 504,
+          "pairs_partial_context": 799,
+          "sequences_partial_context": 496,
+          "pairs_full24_context": 180,
+          "sequences_full24_context": 78
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::CALCIUM",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Chloride",
+      "variable_key": "SEPSIS2019::Chloride",
+      "group": "electrolytes_minerals",
+      "source_unit_as_documented": "mmol/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1731,
+          "sequences_with_future_labels": 530,
+          "pairs_partial_context": 1656,
+          "sequences_partial_context": 520,
+          "pairs_full24_context": 666,
+          "sequences_full24_context": 304
+        },
+        "4": {
+          "future_labels": 1514,
+          "sequences_with_future_labels": 505,
+          "pairs_partial_context": 1470,
+          "sequences_partial_context": 498,
+          "pairs_full24_context": 596,
+          "sequences_full24_context": 285
+        },
+        "8": {
+          "future_labels": 1296,
+          "sequences_with_future_labels": 465,
+          "pairs_partial_context": 1264,
+          "sequences_partial_context": 456,
+          "pairs_full24_context": 481,
+          "sequences_full24_context": 239
+        },
+        "24": {
+          "future_labels": 666,
+          "sequences_with_future_labels": 304,
+          "pairs_partial_context": 652,
+          "sequences_partial_context": 301,
+          "pairs_full24_context": 149,
+          "sequences_full24_context": 46
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::CHLORIDE",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Creatinine",
+      "variable_key": "SEPSIS2019::Creatinine",
+      "group": "renal_energy_metabolism",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2283,
+          "sequences_with_future_labels": 941,
+          "pairs_partial_context": 2177,
+          "sequences_partial_context": 934,
+          "pairs_full24_context": 874,
+          "sequences_full24_context": 557
+        },
+        "4": {
+          "future_labels": 2020,
+          "sequences_with_future_labels": 915,
+          "pairs_partial_context": 1959,
+          "sequences_partial_context": 902,
+          "pairs_full24_context": 779,
+          "sequences_full24_context": 515
+        },
+        "8": {
+          "future_labels": 1747,
+          "sequences_with_future_labels": 850,
+          "pairs_partial_context": 1682,
+          "sequences_partial_context": 835,
+          "pairs_full24_context": 617,
+          "sequences_full24_context": 419
+        },
+        "24": {
+          "future_labels": 874,
+          "sequences_with_future_labels": 557,
+          "pairs_partial_context": 853,
+          "sequences_partial_context": 547,
+          "pairs_full24_context": 187,
+          "sequences_full24_context": 87
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::CREATININE",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Bilirubin_direct",
+      "variable_key": "SEPSIS2019::Bilirubin_direct",
+      "group": "hepatobiliary_enzymes",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 74,
+          "sequences_with_future_labels": 44,
+          "pairs_partial_context": 66,
+          "sequences_partial_context": 37,
+          "pairs_full24_context": 15,
+          "sequences_full24_context": 8
+        },
+        "4": {
+          "future_labels": 58,
+          "sequences_with_future_labels": 32,
+          "pairs_partial_context": 57,
+          "sequences_partial_context": 32,
+          "pairs_full24_context": 13,
+          "sequences_full24_context": 7
+        },
+        "8": {
+          "future_labels": 49,
+          "sequences_with_future_labels": 30,
+          "pairs_partial_context": 46,
+          "sequences_partial_context": 28,
+          "pairs_full24_context": 12,
+          "sequences_full24_context": 7
+        },
+        "24": {
+          "future_labels": 15,
+          "sequences_with_future_labels": 8,
+          "pairs_partial_context": 14,
+          "sequences_partial_context": 7,
+          "pairs_full24_context": 5,
+          "sequences_full24_context": 2
+        }
+      }
+    },
+    {
+      "source_key": "Glucose",
+      "variable_key": "SEPSIS2019::Glucose",
+      "group": "renal_energy_metabolism",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 6439,
+          "sequences_with_future_labels": 960,
+          "pairs_partial_context": 6215,
+          "sequences_partial_context": 954,
+          "pairs_full24_context": 2367,
+          "sequences_full24_context": 619
+        },
+        "4": {
+          "future_labels": 5739,
+          "sequences_with_future_labels": 939,
+          "pairs_partial_context": 5565,
+          "sequences_partial_context": 933,
+          "pairs_full24_context": 2029,
+          "sequences_full24_context": 574
+        },
+        "8": {
+          "future_labels": 4882,
+          "sequences_with_future_labels": 900,
+          "pairs_partial_context": 4728,
+          "sequences_partial_context": 888,
+          "pairs_full24_context": 1611,
+          "sequences_full24_context": 496
+        },
+        "24": {
+          "future_labels": 2367,
+          "sequences_with_future_labels": 619,
+          "pairs_partial_context": 2277,
+          "sequences_partial_context": 606,
+          "pairs_full24_context": 459,
+          "sequences_full24_context": 124
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::GLUCOSE",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Lactate",
+      "variable_key": "SEPSIS2019::Lactate",
+      "group": "metabolic_lactate",
+      "source_unit_as_documented": "mg/dL (source documentation)",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": true,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 944,
+          "sequences_with_future_labels": 301,
+          "pairs_partial_context": 877,
+          "sequences_partial_context": 281,
+          "pairs_full24_context": 236,
+          "sequences_full24_context": 98
+        },
+        "4": {
+          "future_labels": 754,
+          "sequences_with_future_labels": 251,
+          "pairs_partial_context": 707,
+          "sequences_partial_context": 240,
+          "pairs_full24_context": 189,
+          "sequences_full24_context": 86
+        },
+        "8": {
+          "future_labels": 568,
+          "sequences_with_future_labels": 207,
+          "pairs_partial_context": 546,
+          "sequences_partial_context": 195,
+          "pairs_full24_context": 153,
+          "sequences_full24_context": 73
+        },
+        "24": {
+          "future_labels": 236,
+          "sequences_with_future_labels": 98,
+          "pairs_partial_context": 228,
+          "sequences_partial_context": 98,
+          "pairs_full24_context": 46,
+          "sequences_full24_context": 17
+        }
+      },
+      "quality_review_note": "Source documented units require primary protocol verification; do not change units from value plausibility alone."
+    },
+    {
+      "source_key": "Magnesium",
+      "variable_key": "SEPSIS2019::Magnesium",
+      "group": "electrolytes_minerals",
+      "source_unit_as_documented": "mmol/dL (source documentation)",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": true,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2363,
+          "sequences_with_future_labels": 861,
+          "pairs_partial_context": 2264,
+          "sequences_partial_context": 854,
+          "pairs_full24_context": 968,
+          "sequences_full24_context": 525
+        },
+        "4": {
+          "future_labels": 2092,
+          "sequences_with_future_labels": 828,
+          "pairs_partial_context": 2035,
+          "sequences_partial_context": 813,
+          "pairs_full24_context": 865,
+          "sequences_full24_context": 488
+        },
+        "8": {
+          "future_labels": 1806,
+          "sequences_with_future_labels": 765,
+          "pairs_partial_context": 1745,
+          "sequences_partial_context": 749,
+          "pairs_full24_context": 693,
+          "sequences_full24_context": 400
+        },
+        "24": {
+          "future_labels": 968,
+          "sequences_with_future_labels": 525,
+          "pairs_partial_context": 946,
+          "sequences_partial_context": 518,
+          "pairs_full24_context": 210,
+          "sequences_full24_context": 83
+        }
+      },
+      "quality_review_note": "Source documented units require primary protocol verification; do not change units from value plausibility alone."
+    },
+    {
+      "source_key": "Phosphate",
+      "variable_key": "SEPSIS2019::Phosphate",
+      "group": "electrolytes_minerals",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1516,
+          "sequences_with_future_labels": 702,
+          "pairs_partial_context": 1441,
+          "sequences_partial_context": 692,
+          "pairs_full24_context": 610,
+          "sequences_full24_context": 400
+        },
+        "4": {
+          "future_labels": 1321,
+          "sequences_with_future_labels": 664,
+          "pairs_partial_context": 1280,
+          "sequences_partial_context": 647,
+          "pairs_full24_context": 551,
+          "sequences_full24_context": 365
+        },
+        "8": {
+          "future_labels": 1129,
+          "sequences_with_future_labels": 595,
+          "pairs_partial_context": 1087,
+          "sequences_partial_context": 582,
+          "pairs_full24_context": 437,
+          "sequences_full24_context": 296
+        },
+        "24": {
+          "future_labels": 610,
+          "sequences_with_future_labels": 400,
+          "pairs_partial_context": 597,
+          "sequences_partial_context": 393,
+          "pairs_full24_context": 139,
+          "sequences_full24_context": 58
+        }
+      }
+    },
+    {
+      "source_key": "Potassium",
+      "variable_key": "SEPSIS2019::Potassium",
+      "group": "electrolytes_minerals",
+      "source_unit_as_documented": "mmol/L",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 3504,
+          "sequences_with_future_labels": 946,
+          "pairs_partial_context": 3346,
+          "sequences_partial_context": 941,
+          "pairs_full24_context": 1311,
+          "sequences_full24_context": 576
+        },
+        "4": {
+          "future_labels": 3078,
+          "sequences_with_future_labels": 922,
+          "pairs_partial_context": 2966,
+          "sequences_partial_context": 910,
+          "pairs_full24_context": 1149,
+          "sequences_full24_context": 538
+        },
+        "8": {
+          "future_labels": 2595,
+          "sequences_with_future_labels": 856,
+          "pairs_partial_context": 2509,
+          "sequences_partial_context": 841,
+          "pairs_full24_context": 899,
+          "sequences_full24_context": 442
+        },
+        "24": {
+          "future_labels": 1311,
+          "sequences_with_future_labels": 576,
+          "pairs_partial_context": 1273,
+          "sequences_partial_context": 569,
+          "pairs_full24_context": 281,
+          "sequences_full24_context": 98
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::POTASSIUM",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Bilirubin_total",
+      "variable_key": "SEPSIS2019::Bilirubin_total",
+      "group": "hepatobiliary_enzymes",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 583,
+          "sequences_with_future_labels": 367,
+          "pairs_partial_context": 537,
+          "sequences_partial_context": 340,
+          "pairs_full24_context": 166,
+          "sequences_full24_context": 121
+        },
+        "4": {
+          "future_labels": 474,
+          "sequences_with_future_labels": 303,
+          "pairs_partial_context": 450,
+          "sequences_partial_context": 289,
+          "pairs_full24_context": 140,
+          "sequences_full24_context": 104
+        },
+        "8": {
+          "future_labels": 392,
+          "sequences_with_future_labels": 255,
+          "pairs_partial_context": 374,
+          "sequences_partial_context": 245,
+          "pairs_full24_context": 108,
+          "sequences_full24_context": 82
+        },
+        "24": {
+          "future_labels": 166,
+          "sequences_with_future_labels": 121,
+          "pairs_partial_context": 157,
+          "sequences_partial_context": 115,
+          "pairs_full24_context": 37,
+          "sequences_full24_context": 25
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CMP::BILIRUBIN; TOTAL",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "TroponinI",
+      "variable_key": "SEPSIS2019::TroponinI",
+      "group": "cardiac_laboratory",
+      "source_unit_as_documented": "ng/mL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 393,
+          "sequences_with_future_labels": 185,
+          "pairs_partial_context": 353,
+          "sequences_partial_context": 168,
+          "pairs_full24_context": 77,
+          "sequences_full24_context": 49
+        },
+        "4": {
+          "future_labels": 306,
+          "sequences_with_future_labels": 154,
+          "pairs_partial_context": 286,
+          "sequences_partial_context": 146,
+          "pairs_full24_context": 60,
+          "sequences_full24_context": 39
+        },
+        "8": {
+          "future_labels": 235,
+          "sequences_with_future_labels": 127,
+          "pairs_partial_context": 217,
+          "sequences_partial_context": 117,
+          "pairs_full24_context": 44,
+          "sequences_full24_context": 29
+        },
+        "24": {
+          "future_labels": 77,
+          "sequences_with_future_labels": 49,
+          "pairs_partial_context": 73,
+          "sequences_partial_context": 46,
+          "pairs_full24_context": 13,
+          "sequences_full24_context": 10
+        }
+      }
+    },
+    {
+      "source_key": "Hct",
+      "variable_key": "SEPSIS2019::Hct",
+      "group": "cbc_erythrocytes",
+      "source_unit_as_documented": "%",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 3302,
+          "sequences_with_future_labels": 932,
+          "pairs_partial_context": 3179,
+          "sequences_partial_context": 928,
+          "pairs_full24_context": 1210,
+          "sequences_full24_context": 571
+        },
+        "4": {
+          "future_labels": 2939,
+          "sequences_with_future_labels": 913,
+          "pairs_partial_context": 2853,
+          "sequences_partial_context": 900,
+          "pairs_full24_context": 1042,
+          "sequences_full24_context": 529
+        },
+        "8": {
+          "future_labels": 2475,
+          "sequences_with_future_labels": 849,
+          "pairs_partial_context": 2393,
+          "sequences_partial_context": 836,
+          "pairs_full24_context": 814,
+          "sequences_full24_context": 438
+        },
+        "24": {
+          "future_labels": 1210,
+          "sequences_with_future_labels": 571,
+          "pairs_partial_context": 1179,
+          "sequences_partial_context": 562,
+          "pairs_full24_context": 215,
+          "sequences_full24_context": 94
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CBC::HEMATOCRIT",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Hgb",
+      "variable_key": "SEPSIS2019::Hgb",
+      "group": "cbc_erythrocytes",
+      "source_unit_as_documented": "g/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2791,
+          "sequences_with_future_labels": 930,
+          "pairs_partial_context": 2673,
+          "sequences_partial_context": 926,
+          "pairs_full24_context": 1050,
+          "sequences_full24_context": 560
+        },
+        "4": {
+          "future_labels": 2471,
+          "sequences_with_future_labels": 909,
+          "pairs_partial_context": 2396,
+          "sequences_partial_context": 895,
+          "pairs_full24_context": 919,
+          "sequences_full24_context": 518
+        },
+        "8": {
+          "future_labels": 2118,
+          "sequences_with_future_labels": 838,
+          "pairs_partial_context": 2047,
+          "sequences_partial_context": 825,
+          "pairs_full24_context": 717,
+          "sequences_full24_context": 426
+        },
+        "24": {
+          "future_labels": 1050,
+          "sequences_with_future_labels": 560,
+          "pairs_partial_context": 1026,
+          "sequences_partial_context": 551,
+          "pairs_full24_context": 186,
+          "sequences_full24_context": 84
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CBC::HEMOGLOBIN",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "PTT",
+      "variable_key": "SEPSIS2019::PTT",
+      "group": "hemostasis_adhesion",
+      "source_unit_as_documented": "seconds",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 1080,
+          "sequences_with_future_labels": 472,
+          "pairs_partial_context": 1022,
+          "sequences_partial_context": 449,
+          "pairs_full24_context": 365,
+          "sequences_full24_context": 218
+        },
+        "4": {
+          "future_labels": 911,
+          "sequences_with_future_labels": 405,
+          "pairs_partial_context": 881,
+          "sequences_partial_context": 393,
+          "pairs_full24_context": 324,
+          "sequences_full24_context": 200
+        },
+        "8": {
+          "future_labels": 766,
+          "sequences_with_future_labels": 351,
+          "pairs_partial_context": 740,
+          "sequences_partial_context": 340,
+          "pairs_full24_context": 261,
+          "sequences_full24_context": 170
+        },
+        "24": {
+          "future_labels": 365,
+          "sequences_with_future_labels": 218,
+          "pairs_partial_context": 356,
+          "sequences_partial_context": 214,
+          "pairs_full24_context": 71,
+          "sequences_full24_context": 34
+        }
+      }
+    },
+    {
+      "source_key": "WBC",
+      "variable_key": "SEPSIS2019::WBC",
+      "group": "cbc_leukocytes",
+      "source_unit_as_documented": "10^3/uL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2412,
+          "sequences_with_future_labels": 927,
+          "pairs_partial_context": 2313,
+          "sequences_partial_context": 922,
+          "pairs_full24_context": 929,
+          "sequences_full24_context": 554
+        },
+        "4": {
+          "future_labels": 2143,
+          "sequences_with_future_labels": 905,
+          "pairs_partial_context": 2079,
+          "sequences_partial_context": 892,
+          "pairs_full24_context": 829,
+          "sequences_full24_context": 512
+        },
+        "8": {
+          "future_labels": 1843,
+          "sequences_with_future_labels": 837,
+          "pairs_partial_context": 1774,
+          "sequences_partial_context": 822,
+          "pairs_full24_context": 656,
+          "sequences_full24_context": 417
+        },
+        "24": {
+          "future_labels": 929,
+          "sequences_with_future_labels": 554,
+          "pairs_partial_context": 909,
+          "sequences_partial_context": 545,
+          "pairs_full24_context": 179,
+          "sequences_full24_context": 79
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CBC::WHITE BLOOD CELL COUNT",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    },
+    {
+      "source_key": "Fibrinogen",
+      "variable_key": "SEPSIS2019::Fibrinogen",
+      "group": "hemostasis_adhesion",
+      "source_unit_as_documented": "mg/dL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 234,
+          "sequences_with_future_labels": 110,
+          "pairs_partial_context": 220,
+          "sequences_partial_context": 102,
+          "pairs_full24_context": 65,
+          "sequences_full24_context": 36
+        },
+        "4": {
+          "future_labels": 198,
+          "sequences_with_future_labels": 90,
+          "pairs_partial_context": 191,
+          "sequences_partial_context": 88,
+          "pairs_full24_context": 53,
+          "sequences_full24_context": 30
+        },
+        "8": {
+          "future_labels": 162,
+          "sequences_with_future_labels": 73,
+          "pairs_partial_context": 155,
+          "sequences_partial_context": 70,
+          "pairs_full24_context": 46,
+          "sequences_full24_context": 27
+        },
+        "24": {
+          "future_labels": 65,
+          "sequences_with_future_labels": 36,
+          "pairs_partial_context": 64,
+          "sequences_partial_context": 36,
+          "pairs_full24_context": 12,
+          "sequences_full24_context": 4
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "EVE_CARDIO::Fibrinogen",
+        "status": "provisional_different_assay",
+        "factor": 10000,
+        "note": "mg/dL to ng/ml conversion is dimensional only; clinical and multiplex assays are not proven interchangeable."
+      }
+    },
+    {
+      "source_key": "Platelets",
+      "variable_key": "SEPSIS2019::Platelets",
+      "group": "cbc_platelets",
+      "source_unit_as_documented": "10^3/uL",
+      "input_candidate": true,
+      "target_candidate": true,
+      "candidate_horizons_hours": [
+        1,
+        4,
+        8,
+        24
+      ],
+      "target_definition": "Actual finite valid published value associated with terminal interval(t+h-1hour,t+h], same sequence. Do not assert within-bin mean or fabricate missing laboratory labels.",
+      "unit_review_required": false,
+      "eligibility_status": "retained_candidate_support_audited_modeling_not_started",
+      "observed_support": {
+        "1": {
+          "future_labels": 2251,
+          "sequences_with_future_labels": 928,
+          "pairs_partial_context": 2150,
+          "sequences_partial_context": 923,
+          "pairs_full24_context": 858,
+          "sequences_full24_context": 554
+        },
+        "4": {
+          "future_labels": 1997,
+          "sequences_with_future_labels": 906,
+          "pairs_partial_context": 1935,
+          "sequences_partial_context": 893,
+          "pairs_full24_context": 761,
+          "sequences_full24_context": 511
+        },
+        "8": {
+          "future_labels": 1708,
+          "sequences_with_future_labels": 839,
+          "pairs_partial_context": 1639,
+          "sequences_partial_context": 825,
+          "pairs_full24_context": 599,
+          "sequences_full24_context": 415
+        },
+        "24": {
+          "future_labels": 858,
+          "sequences_with_future_labels": 554,
+          "pairs_partial_context": 837,
+          "sequences_partial_context": 543,
+          "pairs_full24_context": 159,
+          "sequences_full24_context": 79
+        }
+      },
+      "cross_domain_candidate": {
+        "target": "CBC::PLATELET COUNT",
+        "status": "semantic_candidate_keep_domain_and_assay_separate",
+        "factor": 1,
+        "note": "Original assay matrix, calibration and published units require confirmation before pooling."
+      }
+    }
+  ],
+  "utmb_confirmed_transfer_only": {
+    "mapping_file": "config/utmb_candidate_mapping.json",
+    "source": "LSDA-UTMB-C3",
+    "targets": [
+      "CMP::ALT",
+      "CMP::ALKALINE PHOSPHATASE",
+      "CMP::AST",
+      "CMP::UREA NITROGEN (BUN)",
+      "CMP::CALCIUM",
+      "CMP::CARBON DIOXIDE",
+      "CMP::CHLORIDE",
+      "CMP::CREATININE",
+      "CMP::GLUCOSE",
+      "CMP::POTASSIUM",
+      "CMP::SODIUM",
+      "CMP::BILIRUBIN; TOTAL",
+      "CMP::PROTEIN; TOTAL",
+      "CBC::HEMATOCRIT",
+      "CBC::HEMOGLOBIN",
+      "CBC::MCH",
+      "CBC::MCHC",
+      "CBC::MCV",
+      "CBC::PLATELET COUNT",
+      "CBC::RDW",
+      "CBC::RED BLOOD CELL COUNT",
+      "CBC::WHITE BLOOD CELL COUNT",
+      "CMP::ALBUMIN"
+    ],
+    "count": 23,
+    "eligible_hourly_horizons": [],
+    "reason": "Dated visits with no genuine1/4/8/24h labels or continuous24h history. Transfer compatible encoders, no hourly ground truth."
+  },
+  "other_domain_constraints": {
+    "BIDMC": {
+      "recording_seconds": 480,
+      "eligible_hourly_horizons": [],
+      "reason": "No one-hour followup in any8minrecord. Numeric cardiorespiratory component pretraining only."
+    },
+    "Inspiration4_UTMB_PBCseq": {
+      "eligible_hourly_horizons": [],
+      "reason": "Sparse visits; do not interpolate laboratory targets at hours."
+    },
+    "NHANES": {
+      "eligible_hourly_horizons": [],
+      "reason": "Cross-sectional encoder pretraining only."
+    },
+    "Mars500_microbiome": {
+      "eligible_hourly_horizons": [],
+      "reason": "Repeated samples over months, not hourly microbial labels."
+    }
+  },
+  "evidence": {
+    "target_support_file": "outputs/feasibility/target_availability.csv",
+    "by_hospital_support_file": "outputs/feasibility/target_availability_by_hospital.csv",
+    "summary_file": "outputs/feasibility/hourly_summary.json",
+    "origin_definitions": {
+      "origin": "End of current hourly row at integer ICULOS t; label exactly at ICULOS t+h in the same sequence.",
+      "future_labels": "Nonmissing finite published target cells at exact horizon, without requiring any input history.",
+      "partial_context": "Between one and24 existing hourly slots in [t-23,t], with at least one finite observed value across the34 dynamic variables in that window.",
+      "full24_context": "All24 integer hourly slots [t-23,t] exist and at least one dynamic measurement exists anywhere in that window; individual cells may be missing.",
+      "sequence_counts": "ICU records/files, not asserted unique people across admissions.",
+      "label_independence": "A nonmissing published hourly value is not proof of a new independently drawn sample at that hour.",
+      "uncertainty": "q10/q50/q90 requested; sample counts do not establish predictive calibration.",
+      "aggregation": "15minute observations or within15minute mean/min/max cannot be recovered from hourly rows."
+    },
+    "origins_all_hospitals": [
+      {
+        "horizon_hours": 1,
+        "exact_future_origins": 37153,
+        "partial_context_origins": 36302,
+        "full24_context_origins": 15690,
+        "sequences_with_future": 1000
+      },
+      {
+        "horizon_hours": 4,
+        "exact_future_origins": 34153,
+        "partial_context_origins": 33302,
+        "full24_context_origins": 13552,
+        "sequences_with_future": 1000
+      },
+      {
+        "horizon_hours": 8,
+        "exact_future_origins": 30153,
+        "partial_context_origins": 29308,
+        "full24_context_origins": 10893,
+        "sequences_with_future": 994
+      },
+      {
+        "horizon_hours": 24,
+        "exact_future_origins": 15690,
+        "partial_context_origins": 15076,
+        "full24_context_origins": 3306,
+        "sequences_with_future": 732
+      }
+    ],
+    "counts_pre_quality_note": "Finite published cells are not independent sampling events; quality/unit audit may reduce usable counts. Counts are not training or calibration metrics."
+  },
+  "eligibility_policy": [
+    "Retain every dynamic variable and every physically/analytically valid observed value as candidate; missing values are not zeros.",
+    "For each variable,horizon and split report actual label pairs and independent sequence counts.",
+    "No arbitrary easy-variable selection; unsupported test/calibration cells report NA/insufficient evidence, not zeroerror.",
+    "Zero training labels for one head means untrained output; do not present as calibrated prediction.",
+    "Rare variables remain in planned heads; absence of usable labels blocks claims, not archival retention."
+  ],
+  "metrics": [
+    "pinball_q10_q50_q90",
+    "MAE_q50_in_original_units",
+    "empirical_q10_q90_coverage",
+    "q10_q90_width",
+    "label_pairs",
+    "sequence_count",
+    "source_quality_and_missingness",
+    "baseline_comparison_by_variable_horizon_domain"
+  ],
+  "context_sensitivity": "Compare shortversus24h contexts at identical origins and separately evaluate warmstarts; report sample losses from fullcontext requirement.",
+  "no_claim": "These hourly terrestrial data do not establish24h astronaut performance or clinical decision thresholds.",
+  "target_semantics": {
+    "status": "terminal_bin_confirmed_by_user",
+    "definition": "Value associated with terminal interval ending at t+h; not cumulative mean over(t,t+h].",
+    "current_hourly_interval": "(t+h-1hour,t+h]",
+    "future_real_15min_interval": "(t+h-15minutes,t+h]",
+    "published_value_policy": "Use source published cell without asserting it is a true hourly mean/min/max; preserve documented source aggregation.",
+    "laboratory_policy": "Only actual observed laboratory results assigned to the terminal interval; no interpolated or forward-filled labels."
+  }
+}

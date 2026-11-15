@@ -1,0 +1,38 @@
+[
+  {
+    "file": "ORBITA-demo-ava.mp4",
+    "duration_seconds": 30.0,
+    "voice": "en-US-AvaMultilingualNeural",
+    "speech_end": 28.905825300000004,
+    "closing_sound_start": 29.025825300000005,
+    "si_metadata": true,
+    "peak": 0.907989501953125
+  },
+  {
+    "file": "ORBITA-demo-andrew.mp4",
+    "duration_seconds": 30.0,
+    "voice": "en-US-AndrewMultilingualNeural",
+    "speech_end": 29.524757400000002,
+    "closing_sound_start": 29.644757400000003,
+    "si_metadata": true,
+    "peak": 0.8533935546875
+  },
+  {
+    "file": "ORBITA-demo-ryan.mp4",
+    "duration_seconds": 30.0,
+    "voice": "en-GB-RyanNeural",
+    "speech_end": 29.027184600000002,
+    "closing_sound_start": 29.147184600000003,
+    "si_metadata": true,
+    "peak": 0.84735107421875
+  },
+  {
+    "file": "ORBITA-demo-guy.mp4",
+    "duration_seconds": 30.0,
+    "voice": "en-US-GuyNeural",
+    "speech_end": 28.614563200000003,
+    "closing_sound_start": 28.734563200000004,
+    "si_metadata": true,
+    "peak": 0.849639892578125
+  }
+]

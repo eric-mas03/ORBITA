@@ -1,0 +1,9 @@
+Meet Orbita: a predictive digital twin with chatbot assistance.
+
+Compare forecasts with observations, and ask the chatbot about uncertainty.
+
+Different signals learn patterns through a shared memory, with a forecast for each measurement.
+
+NASA contributes astronaut blood panels, ground studies, and station radiation.
+
+More astronaut data, more often, to improve and validate predictions.

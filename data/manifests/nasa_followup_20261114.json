@@ -1,0 +1,181 @@
+[
+  {
+    "label": "BRSMCF_C1",
+    "records": [
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/data/datasets/95186651-28d7-5c72-8f32-d40838766078/full",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\catalog.json",
+        "bytes": 172035,
+        "sha256": "df2b456bf111af1819d173c0869e69a9a4c33165cb16b162f7b8381620b0cd60",
+        "status": "downloaded",
+        "kind": "catalogue"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/20a198bc-610c-50b2-bb4a-85c983802099/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_SLN_PCT_Change.csv",
+        "bytes": 1296,
+        "sha256": "fd257e42bdb01c2389e3db7fecc92508dd03f855b195c66a3426ca7148eafec3",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "8efd1d21e54b00a839d8db9281d35f8f"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/b2fb6099-44c4-57c5-b059-56470cdd1903/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_SLN_Arm.csv",
+        "bytes": 71472,
+        "sha256": "753ceb0b8331824b2f9b80165d8c8d14b871e4182321365eddfc468174c735f7",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "2f08b9cea521bc32ee37e8733b773fc1"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/6fe3b992-242b-5d63-ad79-4bd8a768ada2/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_CF_Avg.csv",
+        "bytes": 73502,
+        "sha256": "5d1712a2dd4dc3ec9fc0df740cfd3fcdd68a7da816e9a26551056643f2bc1d7f",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "210a414f853530bc2d8ac6824989ed60"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/8beb711a-b74f-506a-808e-9673e5734446/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_SLN_Leg.csv",
+        "bytes": 69569,
+        "sha256": "383d270dbd7ed5c35c0d0d9773d75f89a11e9d019a27ecac6a8fa7148c5ae160",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "469d6b42e697e52137162904a164a0a1"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/b7f78d80-6442-50a5-9f0b-26cbf96fabd6/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_SLN_Leg_Avg.csv",
+        "bytes": 11336,
+        "sha256": "2b8ae0b4c4bb87c5d2259d1999e39a8ae6c8af9d4f47f837ad4e7a0f03797f5b",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "362a7ac1e8d9f1918a97a17d2bca139b"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/a65a7a53-2bf7-5261-b93d-7376f93c174f/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C1\\BRSMCF_Campaign_1_Echocardiography_CF.csv",
+        "bytes": 229134,
+        "sha256": "49e4ab97a9e3db3b4e0d473b552bb7f325c63f23ac1132807505b34b584ae147",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "eec4a680c90422055b47670e82d1ad48"
+      }
+    ]
+  },
+  {
+    "label": "BRSMCF_C3",
+    "records": [
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/data/datasets/c3bdfa7e-6661-5891-9ba0-0fc7c7a080d6/full",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\catalog.json",
+        "bytes": 178376,
+        "sha256": "2d62030b698711f13792849096d93ec95ae2fbad56c87fbd6b0a0ac34a6ae303",
+        "status": "downloaded",
+        "kind": "catalogue"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/07e727b6-28a6-53f1-996b-ddd4aa0bc009/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\BRSMCF_C3D_Echo_stills.csv",
+        "bytes": 6979,
+        "sha256": "6418e4dadee41bec1458a0b75f435b5e6bbb80db9ca01fbf0636e33a1c111144",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "ced45b6654077b14cb317870dcbbf366"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/975c46f9-f290-5e79-bb90-d3118ede6d24/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\BRSMCF_C3E_Echo_stills.csv",
+        "bytes": 6949,
+        "sha256": "0b86fc73421024f43620fc3e82748c2d1dad41c42064b70b8be80ae2c7d1dd43",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "bd400a278dd0bf4d3453f1979141f5f5"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/62c3ce72-46b9-5ef6-90a7-28c201cc87cc/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\BRSMCF_C3ABCD_Echocardiography_avgs.csv",
+        "bytes": 13621,
+        "sha256": "ba9e769a6416f33c9ed951a6d2b7ed7e45e90aab3bda9029af0bb8455521188f",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "7e9b722588a736a280ea47fbbc08c093"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/e81adbae-0290-5d34-9c31-70d382902a24/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\BRSMCF_C3ABCD_Echocardiography_obsv.csv",
+        "bytes": 53743,
+        "sha256": "86c40acbc2aac2741b2d7cf5670b7cb19f7205e6f8bd7d8bb0d42b6ef241f4dd",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "ee4dc89d93052146e0cb6378b2c13a5e"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/ad95f2a0-854c-5efd-9aa8-9bb8d1c37069/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_C3\\BRSMCF_C3F_Echo_stills.csv",
+        "bytes": 3599,
+        "sha256": "a32099ab2ec7409942d0673adde82587bc13f21bf2ea4e7c463d53670d58f33d",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "82aa2d38f9dbc04b79f9ea20bc5e753d"
+      }
+    ]
+  },
+  {
+    "label": "BRSMCF_CFT70",
+    "records": [
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/data/datasets/59501092-7252-5848-b79c-650e954b51ed/full",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_CFT70\\catalog.json",
+        "bytes": 161282,
+        "sha256": "8dce3813344599cc7ecc7295ec44fb39f722c5d79cd2b67f16909ce001f21898",
+        "status": "downloaded",
+        "kind": "catalogue"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/9ea35af2-4469-54ff-b01b-5c222ad77ce5/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_CFT70\\BRSMCF_CFT70_2D_Echo_All.csv",
+        "bytes": 35514,
+        "sha256": "237e0ddae23d3d4f710520b3e2eb322ddcbd8c5404fbcddaa3f26371c47e2dbc",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "a8a1c3d9d04b80ffa4acf5067dbf0f04"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/47eb7750-0352-5da9-a074-dd27dc953455/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_CFT70\\BRSMCF_CFT70_2D_Echo_7_Subjects.csv",
+        "bytes": 7083,
+        "sha256": "b937c7e3dc077fe29b586ad5e15cb8606cdcf5152d0ee653be36a4e316c71aa3",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "906a8b81ada99b0e8768b03988efa085"
+      },
+      {
+        "url": "https://nlsp.nasa.gov/api/v1/files/a4bef7e9-8ad2-5624-bcfe-4b952c30a2c8/download",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_LSDA\\BRSMCF_CFT70\\BRSMCF_CFT70_3D_Echo_All.csv",
+        "bytes": 35454,
+        "sha256": "885f78d28c2f49963513ab9815b5a51ae949091e6316565ff26613cc422cb3ba",
+        "status": "downloaded",
+        "kind": "public_table",
+        "catalog_md5": "b8c563dfd64906ccd161639d5949d864"
+      }
+    ]
+  },
+  {
+    "label": "RADLAB_ISS_DosTel1_14days",
+    "records": [
+      {
+        "url": "https://visualization.osdr.nasa.gov/radlab/api?query=(timestamp%3E=2022-03-01)AND(timestamp%3C2022-03-15)AND(instrument_id=DosTel1)&fields+=absorbed_dose_rate&format=csv",
+        "path": "data\\raw\\research_expansion_20261114\\NASA_RADLAB\\ISS_DosTel1_20220301_20220315.csv",
+        "bytes": 734752,
+        "sha256": "349764c63071c22f11197d7cba9bb5832b8fcecf87c642128576e25ac7bef76d",
+        "status": "downloaded",
+        "kind": "radiation_measurements",
+        "domain": "spacecraft_environment_not_personal_dose"
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "file": "orbita-30s.mp4",
+  "duration_seconds": 30,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 900,
+  "narration": "voice-editions/ava-30s.wav",
+  "capture": "Offline editorial composition, fixed product framing, blur dissolves, curve reveals, kinetic text, 3D network illustration and staggered evidence cards. No website playback.",
+  "forecast_artifacts": "outputs/presentation_campaign",
+  "generated_at": "2026-11-14T17:25:27.318Z",
+  "displayed_history_hours": 2,
+  "initial_horizon_hours": 4,
+  "measurement_outputs": 32,
+  "ui_revision": "measurements-history-sidebar",
+  "versioned_copy": "orbita-30s-v6-submission.mp4",
+  "narration_voice": "en-US-AvaMultilingualNeural",
+  "narration_revision": "submission-closing-v6",
+  "audio_mix": "montage/narration-and-transitions.wav",
+  "montage_manifest": "montage/montage-manifest.json",
+  "voice_variants": {
+    "ava": "submission/ORBITA-demo-ava.mp4",
+    "andrew": "submission/ORBITA-demo-andrew.mp4",
+    "ryan": "submission/ORBITA-demo-ryan.mp4",
+    "guy": "submission/ORBITA-demo-guy.mp4"
+  },
+  "voice_comparison": "orbita-voice-comparison.mp4",
+  "product_camera": "fixed: no zoom, pan or tilt",
+  "closing_image_starts_at": 28.25,
+  "si_disclosure": "SI-GENERATED VIDEO | SYNTHETIC VOICE: visible throughout, with descriptive MP4 metadata. Restored at user request for submission.",
+  "visible_si_label": true
+}

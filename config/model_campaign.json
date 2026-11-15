@@ -1,0 +1,78 @@
+{
+  "version": "2026-11-14-v1",
+  "status": "individual_trials_and_frozen_confirmation_complete",
+  "selection_split": "dev",
+  "selection_metric": "mean standardized pinball within variable-horizon cells, then equal macro mean",
+  "reference_method": "linear_quantile",
+  "reference_dev_macro_pinball": 0.156520754,
+  "working_competitive_target": {
+    "kind": "engineering_target_not_clinical_validation",
+    "relative_pinball_improvement_minimum": 0.05,
+    "macro_coverage_minimum": 0.75,
+    "support_violation_fraction_not_worse_than_reference_on_dev": true,
+    "report_per_head_and_rare_cells_even_if_aggregate_passes": true,
+    "interpretation": "Operational target for prioritizing further investigation; clinical validity and any benefit from an ensemble require separate evaluation."
+  },
+  "frozen_contract": {
+    "horizons_hours": [
+      1,
+      4,
+      8,
+      24
+    ],
+    "quantiles": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "lookback_hours": 24,
+    "source_resolution_hours": 1,
+    "preserve_full_temporal_sequence": true,
+    "split_episodes": {
+      "train": 600,
+      "dev": 150,
+      "calibration": 100,
+      "old_exploratory_test": 150
+    },
+    "calibration_not_used_for_selection": true,
+    "old_test_not_used_for_new_tuning": true
+  },
+  "new_candidates": [
+    "hist_boost_quantile",
+    "quantile_forest",
+    "hist_boost_group_features",
+    "causal_residual",
+    "window_bidirectional_residual",
+    "group_temporal_residual",
+    "own_summary_mlp_residual"
+  ],
+  "neural_controls": {
+    "initial_residual_zero_reproduces_frozen_linear": true,
+    "full_history_latents_preserved": true,
+    "bidirectional_attention_sees_only_history_ending_at_origin": true,
+    "no_invented_subhourly_measurements": true,
+    "raw_ordered_quantiles_with_support_audit": true
+  },
+  "confirmation": {
+    "new_unused_episodes": 300,
+    "episodes_per_source_site": 150,
+    "model_weights_and_selection_frozen_before_inference": true,
+    "not_for_repeated_adaptive_search": true,
+    "not_space_validation": true
+  },
+  "ensemble": {
+    "phase": "later",
+    "train_in_this_campaign": false
+  },
+  "result": {
+    "selected_for_confirmation": [
+      "linear_quantile",
+      "group_temporal_residual"
+    ],
+    "working_competitive_target_met": false,
+    "ensemble_trained": false,
+    "confirmation_status": "completed_no_refit",
+    "report": "docs/confirmacion-modelos-individuales.md",
+    "config_used_during_fits_snapshot": "outputs/model_campaign/campaign_config_at_fit.json"
+  }
+}

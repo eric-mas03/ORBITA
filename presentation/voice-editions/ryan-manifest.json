@@ -1,0 +1,41 @@
+{
+  "voice": "en-GB-RyanNeural",
+  "accent": "British English",
+  "gender": "Male",
+  "duration_seconds": 30,
+  "synthetic": true,
+  "scenes": [
+    {
+      "text": "Meet Orbita: a predictive digital twin with chatbot assistance.",
+      "start": 0.25,
+      "end": 4.7402913,
+      "tempo_factor": 1.0
+    },
+    {
+      "text": "Compare forecasts with observations, and ask the chatbot about uncertainty.",
+      "start": 5.05,
+      "end": 10.171359299999999,
+      "tempo_factor": 1.0
+    },
+    {
+      "text": "Different signals learn patterns through a shared memory, with a forecast for each measurement.",
+      "start": 11.25,
+      "end": 16.3470875,
+      "tempo_factor": 1.0
+    },
+    {
+      "text": "NASA contributes astronaut blood panels, ground studies, and station radiation.",
+      "start": 18.1,
+      "end": 23.694660300000002,
+      "tempo_factor": 1.0
+    },
+    {
+      "text": "More astronaut data, more often, to improve and validate predictions.",
+      "start": 24.1,
+      "end": 29.027184600000002,
+      "tempo_factor": 1.0
+    }
+  ],
+  "peak_dbfs": -1.4996333027513755,
+  "sha256": "ce6d83f218dbbfbb5c1f39634d8d68a21fa88e90c1c47c3ad61f1329ba4bc8b5"
+}

@@ -1,0 +1,99 @@
+{
+  "repository": "https://github.com/eric-mas03/ORBITA",
+  "frozen_research_replay": true,
+  "clinical_validation": false,
+  "artifacts": {
+    "docs/data/presentation.json": {
+      "bytes": 304181,
+      "sha256": "685480a9bfd321f2980a4854c912f8020a8752490a34b1c0c5ff1bea0582f712"
+    },
+    "docs/media/ORBITA-demo-andrew.mp4": {
+      "bytes": 3847566,
+      "sha256": "588e1da269d7391e183ed015450030a4ad3534530e9132d72c5920691159cf07"
+    },
+    "docs/media/ORBITA-demo-ava.mp4": {
+      "bytes": 3828515,
+      "sha256": "975740afd01bc6b4c49ea5c4dc0fad91ff6e59f6f89b535f3c0d5d0d1c7ee24b"
+    },
+    "docs/media/ORBITA-demo-guy.mp4": {
+      "bytes": 3810218,
+      "sha256": "ef07b5dea21b394ed493fc0f3026cd12007e9391d38c5e296e2fcd3816c80caa"
+    },
+    "docs/media/ORBITA-demo-ryan.mp4": {
+      "bytes": 3812197,
+      "sha256": "6d5374f99e052aaa8bf605be8db387749550731a47a355d842098b1b2c45e318"
+    },
+    "outputs/presentation_campaign/fit_manifest.json": {
+      "bytes": 19939,
+      "sha256": "bb603281c486915dbb6d5a339c8cd4a706162f0ecec7de18151dda2f5413126a"
+    },
+    "outputs/presentation_campaign/integration.json": {
+      "bytes": 1520,
+      "sha256": "accb4facf3cdba65df561a79df48d6f82e33f748fbfac591c565132ee8c1d61d"
+    },
+    "outputs/presentation_campaign/metrics.csv": {
+      "bytes": 446207,
+      "sha256": "ad5406fa7386c1883286177a1589f7ef4f1f0cd4d314d9c32dd91eadff713bac"
+    },
+    "outputs/presentation_campaign/predictions.csv.gz": {
+      "bytes": 24070529,
+      "sha256": "29805a5c00975203033b548efb7e5b42f156fe5250653e3fcfb0ce8903e95b11"
+    },
+    "outputs/presentation_campaign/series.json": {
+      "bytes": 1381512,
+      "sha256": "08d0deb9e0c19fc4e1e8b06d023a79aea99ceb8c694f9e4307fc827555581f23"
+    },
+    "outputs/presentation_campaign/setup.json": {
+      "bytes": 39564,
+      "sha256": "f2789db092bfcd12d79213a29a962eddd5927c34668a86a61ec153184786cbef"
+    },
+    "outputs/presentation_campaign/source_twin.pt": {
+      "bytes": 182226,
+      "sha256": "46f1872fc0705894281c31101d53e81f76c84c7d21d3ccd36409a1b913854074"
+    },
+    "outputs/presentation_campaign/specs.json": {
+      "bytes": 6216,
+      "sha256": "c06e1c3949915289075d2bb4f5ec52d2a9c39c55ca37767cb4694c307aeff794"
+    },
+    "outputs/presentation_campaign/summary.json": {
+      "bytes": 3394,
+      "sha256": "ed931315be7bb69659faf2b65912fb46dae321eb32e9b050cc06818454d7f714"
+    },
+    "outputs/source_campaign_v3/fit_manifest.json": {
+      "bytes": 19761,
+      "sha256": "83529d81f732d42ca0fa228e06ee04e03f35d0d8062450f10e15e31300f4e405"
+    },
+    "outputs/source_campaign_v3/integration.json": {
+      "bytes": 1520,
+      "sha256": "46fef2de03ad52a82fafb95def0d8467c4733a9d9fefc4d59519aa4aeb7f18ac"
+    },
+    "outputs/source_campaign_v3/metrics.csv": {
+      "bytes": 76962,
+      "sha256": "d4a1871d2ffac9074775d7d5a7080e266d72bf7ef87930d983c8407fc1b09cc1"
+    },
+    "outputs/source_campaign_v3/predictions.csv.gz": {
+      "bytes": 1236983,
+      "sha256": "ce48e9a53e253d11d34235e47cd799bfee5976d3ed4da03483ee45c09ad881f2"
+    },
+    "outputs/source_campaign_v3/series.json": {
+      "bytes": 1381512,
+      "sha256": "08d0deb9e0c19fc4e1e8b06d023a79aea99ceb8c694f9e4307fc827555581f23"
+    },
+    "outputs/source_campaign_v3/setup.json": {
+      "bytes": 15314,
+      "sha256": "565f816d75fb1f51870d89ff1d4a07b7e2b59eb352160c67d2404e1de20ff801"
+    },
+    "outputs/source_campaign_v3/source_twin.pt": {
+      "bytes": 182226,
+      "sha256": "9ee7feeb314202dccef10b45f2dfa65854979056698d36cec97280c49f1bb7d4"
+    },
+    "outputs/source_campaign_v3/specs.json": {
+      "bytes": 5072,
+      "sha256": "64c26ffe4cedf5b7f9b051935c0eef4fd1510cb839eeb2901259aa2001f1fbf7"
+    },
+    "outputs/source_campaign_v3/summary.json": {
+      "bytes": 3386,
+      "sha256": "b28fc0403281effd5dcde062d2917f57eaef4bac8f9cd775b90bdf938f77020b"
+    }
+  }
+}

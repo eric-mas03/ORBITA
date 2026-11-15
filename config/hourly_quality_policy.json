@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-14",
+  "status": "conservative_support_checks_for_hourly_data",
+  "source_url": "https://physionet.org/content/challenge-2019/1.0.0/",
+  "scope": "source_native_hourly_values_not_clinical_diagnosis_or_cross_domain_harmonization",
+  "array_contract": {
+    "shape": "N_rows_by_N_named_variables",
+    "output_dtype": "float32",
+    "invalid_representation": "NaN",
+    "valid_mask": "np.isfinite(cleaned)",
+    "preserve_input_array": true,
+    "drop_rows": false,
+    "drop_variables": false
+  },
+  "missing_policy": "Existing NaN is missing, preserved as NaN without generating one flag per missing cell; infinity is an invalid numeric value and flagged.",
+  "unit_policy": "No automatic conversions. FiO2 fraction/percent ambiguity and Magnesium/Lactate source units remain explicit metadata; native numeric forecasting cannot be interpreted clinically.",
+  "flags_fields": [
+    "row",
+    "variable",
+    "reason",
+    "original"
+  ],
+  "not_applied": [
+    "normal_clinical_reference_ranges",
+    "population_quantiles_or_zscore_outlier_cuts",
+    "interpolation",
+    "forward_fill",
+    "negative_BaseExcess_rejection",
+    "blanket_negative_Celsius_rejection",
+    "rare_variable_or_episode_exclusion"
+  ],
+  "variables": {
+    "HR": {
+      "group": "cardiovascular_vitals",
+      "source_unit": "beats/min",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "O2Sat": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "%",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": 100.0,
+      "bound_basis": "physical_percentage_support"
+    },
+    "Temp": {
+      "group": "thermoregulation",
+      "source_unit": "degC",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": -273.15,
+      "maximum_inclusive": null,
+      "bound_basis": "absolute_zero_only_no_clinical_temperature_cutoff"
+    },
+    "SBP": {
+      "group": "cardiovascular_vitals",
+      "source_unit": "mmHg",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "MAP": {
+      "group": "cardiovascular_vitals",
+      "source_unit": "mmHg",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "DBP": {
+      "group": "cardiovascular_vitals",
+      "source_unit": "mmHg",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Resp": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "breaths/min",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "EtCO2": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "mmHg",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "BaseExcess": {
+      "group": "acid_base",
+      "source_unit": "mmol/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": null,
+      "maximum_inclusive": null,
+      "bound_basis": "signed_excess_may_be_negative"
+    },
+    "HCO3": {
+      "group": "acid_base",
+      "source_unit": "mmol/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "FiO2": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "% (source documentation)",
+      "unit_status": "review_required_native_values_preserved",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": 100.0,
+      "bound_basis": "percent_or_fraction_union_no_conversion",
+      "unit_review_note": "3155 nonmissing values:3154 <=1, one4000 in training_setB/p107096.psv ICULOS2. Source says percent but values suggest fraction. Preserve raw;4000 invalid under either representation, do not silently clip or divide all values."
+    },
+    "pH": {
+      "group": "acid_base",
+      "source_unit": "dimensionless",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": 14.0,
+      "bound_basis": "broad_aqueous_blood_pH_support"
+    },
+    "PaCO2": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "mmHg",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "SaO2": {
+      "group": "respiratory_oxygenation",
+      "source_unit": "%",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": 100.0,
+      "bound_basis": "physical_percentage_support"
+    },
+    "AST": {
+      "group": "hepatobiliary_enzymes",
+      "source_unit": "IU/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "BUN": {
+      "group": "renal_energy_metabolism",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Alkalinephos": {
+      "group": "hepatobiliary_enzymes",
+      "source_unit": "IU/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Calcium": {
+      "group": "electrolytes_minerals",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Chloride": {
+      "group": "electrolytes_minerals",
+      "source_unit": "mmol/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Creatinine": {
+      "group": "renal_energy_metabolism",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Bilirubin_direct": {
+      "group": "hepatobiliary_enzymes",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Glucose": {
+      "group": "renal_energy_metabolism",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Lactate": {
+      "group": "metabolic_lactate",
+      "source_unit": "mg/dL (source documentation)",
+      "unit_status": "review_required_native_values_preserved",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff",
+      "unit_review_note": "Source documented units require primary protocol verification; do not change units from value plausibility alone."
+    },
+    "Magnesium": {
+      "group": "electrolytes_minerals",
+      "source_unit": "mmol/dL (source documentation)",
+      "unit_status": "review_required_native_values_preserved",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff",
+      "unit_review_note": "Source documented units require primary protocol verification; do not change units from value plausibility alone."
+    },
+    "Phosphate": {
+      "group": "electrolytes_minerals",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Potassium": {
+      "group": "electrolytes_minerals",
+      "source_unit": "mmol/L",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Bilirubin_total": {
+      "group": "hepatobiliary_enzymes",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "TroponinI": {
+      "group": "cardiac_laboratory",
+      "source_unit": "ng/mL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Hct": {
+      "group": "cbc_erythrocytes",
+      "source_unit": "%",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": 100.0,
+      "bound_basis": "hematocrit_volume_percentage_support"
+    },
+    "Hgb": {
+      "group": "cbc_erythrocytes",
+      "source_unit": "g/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "PTT": {
+      "group": "hemostasis_adhesion",
+      "source_unit": "seconds",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "WBC": {
+      "group": "cbc_leukocytes",
+      "source_unit": "10^3/uL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Fibrinogen": {
+      "group": "hemostasis_adhesion",
+      "source_unit": "mg/dL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    },
+    "Platelets": {
+      "group": "cbc_platelets",
+      "source_unit": "10^3/uL",
+      "unit_status": "source_documentation_no_cross_domain_conversion",
+      "minimum_inclusive": 0.0,
+      "maximum_inclusive": null,
+      "bound_basis": "nonnegative_physical_magnitude_no_clinical_upper_cutoff"
+    }
+  },
+  "audit_snapshot": {
+    "scope": "downloaded1000_sequence_subset_only",
+    "source_manifest": "data/manifests/external_downloads.json",
+    "sequences": 1000,
+    "rows": 38153,
+    "dynamic_variables": 34,
+    "finite_cells_before": 258323,
+    "valid_cells_after": 258322,
+    "invalid_total": 1,
+    "invalid_by_variable": {
+      "HR": 0,
+      "O2Sat": 0,
+      "Temp": 0,
+      "SBP": 0,
+      "MAP": 0,
+      "DBP": 0,
+      "Resp": 0,
+      "EtCO2": 0,
+      "BaseExcess": 0,
+      "HCO3": 0,
+      "FiO2": 1,
+      "pH": 0,
+      "PaCO2": 0,
+      "SaO2": 0,
+      "AST": 0,
+      "BUN": 0,
+      "Alkalinephos": 0,
+      "Calcium": 0,
+      "Chloride": 0,
+      "Creatinine": 0,
+      "Bilirubin_direct": 0,
+      "Glucose": 0,
+      "Lactate": 0,
+      "Magnesium": 0,
+      "Phosphate": 0,
+      "Potassium": 0,
+      "Bilirubin_total": 0,
+      "TroponinI": 0,
+      "Hct": 0,
+      "Hgb": 0,
+      "PTT": 0,
+      "WBC": 0,
+      "Fibrinogen": 0,
+      "Platelets": 0
+    },
+    "known_invalid_cell": {
+      "site": "training_setB",
+      "file": "p107096.psv",
+      "ICULOS": 2,
+      "row_zero_based": 1,
+      "variable": "FiO2",
+      "original": 4000.0,
+      "reason": "percentage_above_100"
+    }
+  }
+}

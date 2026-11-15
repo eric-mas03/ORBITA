@@ -1,0 +1,44 @@
+{
+  "films": [
+    {
+      "name": "ava",
+      "file": "orbita-30s-v5-ava.mp4",
+      "duration": 30.0,
+      "video_frames": 900.0,
+      "audio_peak": 0.907989501953125,
+      "voice": "en-US-AvaMultilingualNeural",
+      "max_tempo": 1.0
+    },
+    {
+      "name": "andrew",
+      "file": "orbita-30s-v5-andrew.mp4",
+      "duration": 30.0,
+      "video_frames": 900.0,
+      "audio_peak": 0.8533935546875,
+      "voice": "en-US-AndrewMultilingualNeural",
+      "max_tempo": 1.0312368260869567
+    },
+    {
+      "name": "ryan",
+      "file": "orbita-30s-v5-ryan.mp4",
+      "duration": 30.0,
+      "video_frames": 900.0,
+      "audio_peak": 0.84735107421875,
+      "voice": "en-GB-RyanNeural",
+      "max_tempo": 1.0
+    },
+    {
+      "name": "guy",
+      "file": "orbita-30s-v5-guy.mp4",
+      "duration": 30.0,
+      "video_frames": 900.0,
+      "audio_peak": 0.849639892578125,
+      "voice": "en-US-GuyNeural",
+      "max_tempo": 1.0
+    }
+  ],
+  "comparison_duration": 24,
+  "encoded_dashboard_mean_pixel_difference": 0.0069712623953819275,
+  "same_video_packets_verified": true,
+  "speech_detected_in_all_five_scenes": true
+}

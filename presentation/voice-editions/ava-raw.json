@@ -1,0 +1,37 @@
+{
+  "text": "Meet Orbita: a predictive digital twin with chatbot assistance. Compare forecasts with observations, and ask the chatbot about uncertainty. Different signals learn patterns through a shared memory, with a forecast for each measurement. NASA contributes astronaut blood panels, ground studies, and station radiation. More astronaut data, more often, to improve and validate predictions.",
+  "voice": "en-US-AvaMultilingualNeural",
+  "rate": "+3%",
+  "sentences": [
+    {
+      "type": "SentenceBoundary",
+      "offset": 500000,
+      "duration": 42582525,
+      "text": "Meet Orbita: a predictive digital twin with chatbot assistance."
+    },
+    {
+      "type": "SentenceBoundary",
+      "offset": 43082525,
+      "duration": 47087379,
+      "text": "Compare forecasts with observations, and ask the chatbot about uncertainty."
+    },
+    {
+      "type": "SentenceBoundary",
+      "offset": 90169905,
+      "duration": 52427185,
+      "text": "Different signals learn patterns through a shared memory, with a forecast for each measurement."
+    },
+    {
+      "type": "SentenceBoundary",
+      "offset": 142597091,
+      "duration": 54126215,
+      "text": "NASA contributes astronaut blood panels, ground studies, and station radiation."
+    },
+    {
+      "type": "SentenceBoundary",
+      "offset": 196723306,
+      "duration": 48058253,
+      "text": "More astronaut data, more often, to improve and validate predictions."
+    }
+  ]
+}

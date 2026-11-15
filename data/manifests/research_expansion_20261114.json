@@ -1,0 +1,68 @@
+{
+  "catalogues": [
+    {
+      "file": "data\\raw\\research_expansion_20261114\\cgmacros_index.html",
+      "url": "https://physionet.org/files/cgmacros/1.0.0/",
+      "resolved_url": "https://physionet.org/files/cgmacros/1.0.0/",
+      "bytes": 1247,
+      "sha256": "f2f7635e048cf4afdaf64512566200801e95f90b5d42dd32c37346b02e9b7adc",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\bigideas_index.html",
+      "url": "https://physionet.org/files/big-ideas-glycemic-wearable/1.1.3/",
+      "resolved_url": "https://physionet.org/files/big-ideas-glycemic-wearable/1.1.3/",
+      "bytes": 2361,
+      "sha256": "98dfc8a3fd8d971ec6eb341c1e421edb726c4c6b266cbcaf6d4654eb6b3694c0",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\bigideas_subject001.html",
+      "url": "https://physionet.org/files/big-ideas-glycemic-wearable/1.1.3/001/",
+      "resolved_url": "https://physionet.org/files/big-ideas-glycemic-wearable/1.1.3/001/",
+      "bytes": 1205,
+      "sha256": "ed611d7648d50e762493b3ef32f7be8b0c744aea1a13bc7652f340946306cede",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\physiocgm_article.json",
+      "url": "https://api.figshare.com/v2/articles/28136294",
+      "resolved_url": "https://api.figshare.com/v2/articles/28136294",
+      "bytes": 12137,
+      "sha256": "d547e08c833d8de8af5fba1218fce43ac7a13638f31738edd40a242250d95312",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\openmhc_dataset.md",
+      "url": "https://raw.githubusercontent.com/AshleyLab/OpenMHC/main/DATASET.md",
+      "resolved_url": "https://raw.githubusercontent.com/AshleyLab/OpenMHC/main/DATASET.md",
+      "bytes": 10228,
+      "sha256": "2ac760473dd9bdf955296942f78e0aaaab5d0c49a18c5d09386f1dd8c2d7e53c",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\analog_hrv_article.html",
+      "url": "https://www.mdpi.com/2226-4310/11/10/833",
+      "status": "not_downloaded",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\cgmacros_description.html",
+      "url": "https://physionet.org/content/cgmacros/1.0.0/",
+      "resolved_url": "https://physionet.org/content/cgmacros/1.0.0/",
+      "bytes": 63636,
+      "sha256": "fd230bf2a07f3bf2dbe86639df1de8f1cad46c268cd5a7668d12ef73538f926f",
+      "status": "downloaded_catalogue"
+    },
+    {
+      "file": "data\\raw\\research_expansion_20261114\\bigideas_description.html",
+      "url": "https://physionet.org/content/big-ideas-glycemic-wearable/1.1.3/",
+      "resolved_url": "https://physionet.org/content/big-ideas-glycemic-wearable/1.1.3/",
+      "bytes": 59682,
+      "sha256": "069b28c3b48d870a1c790c122664e31a561d168db3dd7e1216f5fda93969ce7f",
+      "status": "downloaded_catalogue"
+    }
+  ],
+  "observations_added": false,
+  "frozen_campaigns_modified": false
+}

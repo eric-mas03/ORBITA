@@ -1,0 +1,13 @@
+{
+  "product_image_pixels_identical_between_seconds": [
+    3.1,
+    4.5
+  ],
+  "opening_image_pixels_identical_between_seconds": [
+    0.9,
+    1.5
+  ],
+  "zoom": false,
+  "pan": false,
+  "rotation": false
+}

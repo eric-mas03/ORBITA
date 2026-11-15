@@ -1,0 +1,116 @@
+{
+  "schema_version": "2.0",
+  "challenge_url": "https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources",
+  "listing_evidence_url": "https://hackathlone.com/challenges/health-monitoring-software",
+  "official_list_verified": true,
+  "official_snapshot": "data/manifests/challenge_page_v2/official_resources_page.html",
+  "official_snapshot_transport": {
+    "http_status": 200,
+    "tls_verification": false,
+    "client": "PowerShell Invoke-WebRequest -SkipCertificateCheck",
+    "reason": "Local certificate issuer validation failed in this environment; this is not evidence of a server outage. Links independently corroborated with organizer mirror and primary NASA/CSA pages."
+  },
+  "completeness_claim": "All five links in the retrieved official Resources block are reconciled; not an exhaustive inventory of all NASA datasets.",
+  "raw_directory": "data/raw/challenge_resources_v2",
+  "max_file_bytes": 20000000,
+  "max_document_bytes": 5000000,
+  "inventory_manifests": [
+    "data/manifests/osdr_downloads.json",
+    "data/manifests/lsda_downloads.json",
+    "data/manifests/external_downloads.json",
+    "data/manifests/nhanes_downloads.json"
+  ],
+  "excluded_from_inventory_reads": [
+    "data/manifests/confirmation_holdout.json",
+    "raw episode files",
+    "clinical observation files",
+    "campaign V1 predictions or artifacts"
+  ],
+  "follow_up_pages": [
+    {
+      "id": "human_research_roadmap",
+      "parent_resource": "nasa_ongoing_hrp",
+      "url": "https://humanresearchroadmap.nasa.gov/",
+      "kind": "risk_evidence_catalogue",
+      "reason": "Public risk/evidence catalogue, not automatically individual health observations."
+    },
+    {
+      "id": "csa_mosfet",
+      "parent_resource": "csa_radiation_cans",
+      "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/mosfet.asp",
+      "kind": "experiment_documentation",
+      "reason": "Radiation detector experiment description; no verified paired person-time health table."
+    },
+    {
+      "id": "csa_evarm",
+      "parent_resource": "csa_radiation_cans",
+      "url": "https://www.asc-csa.gc.ca/eng/iss/evarm.asp",
+      "kind": "experiment_documentation",
+      "reason": "Radiation-monitoring experiment description; exposure is not a clinical outcome label."
+    },
+    {
+      "id": "csa_radi_n2",
+      "parent_resource": "csa_radiation_cans",
+      "url": "https://www.asc-csa.gc.ca/eng/sciences/radi-n2.asp",
+      "kind": "experiment_documentation",
+      "reason": "Neutron-radiation experiment description; verify downloadable observations separately."
+    }
+  ],
+  "resources": [
+    {
+      "id": "nasa_five_hazards",
+      "title": "5 Hazards of Human Spaceflight",
+      "agency": "NASA",
+      "url": "https://www.nasa.gov/hrp/hazards/",
+      "kind": "documentation",
+      "contains_verified_observations": false,
+      "training_eligibility": "not_observational",
+      "reason": "Hazard overview and links; not a participant/time/value table.",
+      "direct_downloads": []
+    },
+    {
+      "id": "nasa_health_risks",
+      "title": "Risks of Human Spaceflight",
+      "agency": "NASA",
+      "url": "https://www.nasa.gov/hrp/risks/",
+      "kind": "documentation",
+      "contains_verified_observations": false,
+      "training_eligibility": "not_observational",
+      "reason": "Risk descriptions and evidence links; not hourly labeled health data.",
+      "direct_downloads": []
+    },
+    {
+      "id": "nasa_ongoing_hrp",
+      "title": "Ongoing HRP Research in Space",
+      "agency": "NASA",
+      "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/",
+      "kind": "documentation",
+      "contains_verified_observations": false,
+      "training_eligibility": "not_observational",
+      "reason": "Research articles/catalogue of investigations; no confirmed direct clinical dataset in resource itself.",
+      "direct_downloads": []
+    },
+    {
+      "id": "csa_radiation_cans",
+      "title": "Monitoring Radiation for Astronaut Health",
+      "agency": "CSA",
+      "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp",
+      "kind": "documentation",
+      "contains_verified_observations": false,
+      "training_eligibility": "not_observational",
+      "reason": "Radiation-monitoring instrument article; no verified paired personal dose and longitudinal health labels.",
+      "direct_downloads": []
+    },
+    {
+      "id": "csa_why_space_science",
+      "title": "Why Do We Conduct Science Experiments in Space?",
+      "agency": "CSA",
+      "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp",
+      "kind": "documentation",
+      "contains_verified_observations": false,
+      "training_eligibility": "not_observational",
+      "reason": "Educational background on research in space; not an observational data table.",
+      "direct_downloads": []
+    }
+  ]
+}
