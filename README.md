@@ -105,14 +105,6 @@ For additional tree-model experiments install `.[research]`. For film generation
 
 ## 30-second submission films
 
-The primary film is **[demo/ORBITA.mp4](demo/ORBITA.mp4)**. It uses the Ava narration by default and includes the final ORBITA closing image, visible SI disclosure and synthetic-audio metadata. Other voice editions have exactly the same pictures and duration:
-
-[Ava](demo/ORBITA-ava.mp4) · [Andrew](demo/ORBITA-andrew.mp4) · [Ryan](demo/ORBITA-ryan.mp4) · [Guy](demo/ORBITA-guy.mp4)
+The film is **[demo/ORBITA.mp4](demo/ORBITA.mp4)**. It uses the Ava narration by default and includes the final ORBITA closing image, visible SI disclosure and synthetic-audio metadata. Other voice editions have exactly the same pictures and duration:
 
 The [video page](https://eric-mas03.github.io/ORBITA/demo.html) also provides a player, voice selection, subtitles and downloads. No sign-in is required to watch the films or explore the dashboard.
-
-## AI / SI disclosure
-
-Software, explanatory text, diagrams and programmatic video composition were developed with OpenAI Codex assistance. Narration is synthetic Microsoft Edge neural speech through edge-tts. The conceptual network is an illustration, not an empirical patient embedding. Measured source observations were not generatively synthesized. See [AI disclosure](AI_DISCLOSURE.md), [machine-readable metadata](data/manifests/si_assistance.json) and [submission fields](presentation/submission/submission-fields-en.md).
-
-No NASA logo, flag or mission patch was generated or modified. Naming NASA data sources does not imply NASA endorsement.
